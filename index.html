@@ -142,7 +142,8 @@ p{margin:0}
   .ri:hover .tip,.ri:focus-visible .tip{opacity:1;transform:translate(0,-50%)}
   .ri .badge{top:4px;right:4px}
   .rail-logo{width:48px;height:40px;display:grid;place-items:center;color:var(--ink);font-weight:700;font-size:22px;letter-spacing:-.05em;text-decoration:none;margin-bottom:2px}
-  .rail-logo span{color:var(--accent)}
+  .rail-logo svg{transition:transform .4s var(--ease-out)}
+  .rail-logo:hover svg{transform:scale(1.08)}
   .rail-av{width:32px;height:32px;border-radius:50%;object-fit:cover;display:grid;place-items:center;background:linear-gradient(135deg,#3a3a3c,#1d1d1f);color:#fff;font-weight:600;font-size:14px}
 }
 .badge{position:absolute;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--heart);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;font-variant-numeric:tabular-nums;top:2px;right:0}
@@ -718,7 +719,7 @@ option,optgroup{background:var(--surface);color:var(--ink)}
 
 <!-- === RAIL (desktop left nav) === -->
 <nav class="rail nav glass" aria-label="Үндсэн цэс">
-  <a class="rail-logo" href="#home" aria-label="Bair.mn нүүр хуудас">B<span>.</span></a>
+  <a class="rail-logo" href="#home" aria-label="Bair.mn нүүр хуудас"><svg viewBox="0 0 197 226" width="24" height="28" fill="currentColor" aria-hidden="true"><path d="M0,56 L0,169 L49,197 L100,169 L148,197 L196,169 L99,113 L49,140 L50,83 L100,56 L148,84 L196,56 L98,0 Z M65,205 L98,225 L132,206 L100,187 Z"/></svg></a>
   <a class="ri" href="#home" data-nav="home" aria-label="Нүүр"><svg class="ico"><use href="#i-home"/></svg><span class="tip" aria-hidden="true">Нүүр</span></a>
   <a class="ri" href="#buy" data-nav="buy" aria-label="Худалдах"><svg class="ico"><use href="#i-search"/></svg><span class="tip" aria-hidden="true">Худалдах</span></a>
   <a class="ri" href="#rent" data-nav="rent" aria-label="Түрээслэх"><svg class="ico"><use href="#i-key"/></svg><span class="tip" aria-hidden="true">Түрээслэх</span></a>
