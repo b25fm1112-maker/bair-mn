@@ -732,7 +732,7 @@ option,optgroup{background:var(--surface);color:var(--ink)}
 </nav>
 <div class="tr glass">
   <a class="tel" href="tel:" data-tel data-track="call_click"><svg class="ico sm"><use href="#i-phone"/></svg><span data-phone></span></a>
-  <button class="btn btn-gold btn-sm" data-viewing>Үзлэг товлох</button>
+  <button class="btn btn-gold btn-sm" data-viewing>Уулзалт товлох</button>
 </div>
 
 <!-- === MOBILE HEADER === -->
@@ -787,7 +787,7 @@ option,optgroup{background:var(--surface);color:var(--ink)}
         <p class="hero-sub bodyL fade" style="animation-delay:.38s">Сонгосон, шалгасан байрууд. Агенттай шууд харилцана.</p>
         <div class="hero-ctas fade" style="animation-delay:.48s">
           <a class="btn btn-gold" href="#listings">Байрнуудыг үзэх</a>
-          <button class="btn btn-glass" data-viewing>Үзлэг товлох</button>
+          <button class="btn btn-glass" data-viewing>Уулзалт товлох</button>
         </div>
       </div>
       <a class="hcard hcard-l glass fade" style="animation-delay:.6s" href="#home" data-scroll="locH">
@@ -938,7 +938,7 @@ option,optgroup{background:var(--surface);color:var(--ink)}
       <p class="eyebrow" style="color:rgba(255,255,255,.75)">Bair.mn</p>
       <h2 class="h1" id="ctaH" style="max-width:14ch">Мөрөөдлийн гэрээ <span class="ital">хамтдаа</span> олъё.</h2>
       <div class="hero-ctas" style="margin:0">
-        <button class="btn btn-gold" data-viewing>Үзлэг товлох</button>
+        <button class="btn btn-gold" data-viewing>Уулзалт товлох</button>
         <a class="btn btn-glass" href="tel:" data-tel data-track="call_click"><svg class="ico"><use href="#i-phone"/></svg><span data-phone></span></a>
       </div>
     </div>
@@ -1579,12 +1579,12 @@ function setLoading(btn, on, text){
 }
 const sendFailMsg = () => `Илгээж чадсангүй. Интернэтээ шалгаад дахин оролдоно уу, эсвэл ${phoneText()} руу шууд залгана уу.`;
 
-/* === VIEWING (Үзлэг товлох) === */
+/* === VIEWING (Уулзалт товлох) === */
 const MN_DAYS = ["Ня","Да","Мя","Лх","Пү","Ба","Бя"];
 function openViewing(listingId, mode){
   const l = DATA.find(x=>x.id===listingId);
   const days = Array.from({length:14},(_,i)=>{ const d=new Date(); d.setDate(d.getDate()+i); return d; });
-  const title = mode==="loan" ? "Зээлийн зөвлөгөө авах" : mode==="service" ? "Зураг, видео үйлчилгээ" : mode==="request" ? "Хүсэлт үлдээх" : "Үзлэг товлох";
+  const title = mode==="loan" ? "Зээлийн зөвлөгөө авах" : mode==="service" ? "Зураг, видео үйлчилгээ" : mode==="request" ? "Хүсэлт үлдээх" : "Уулзалт товлох";
   const isViewing = !mode;
   openSheet(`<div class="sheet-h"><h2 class="h3" id="sheetT">${title}</h2><button class="ibtn" data-close aria-label="Хаах">${ico("i-x")}</button></div>
   <form class="form" id="vForm" novalidate>
@@ -1596,7 +1596,7 @@ function openViewing(listingId, mode){
     <div class="field"><label for="vName">Нэр *</label><input class="inp" id="vName" autocomplete="name" required></div>
     <div class="field"><label for="vPhone">Утас *</label><div class="tel-wrap"><span>+976</span><input class="inp" id="vPhone" inputmode="tel" autocomplete="tel-national" placeholder="9911 2233" required></div></div>
     <div class="field"><label for="vNote">Тайлбар <span class="muted" style="font-weight:500">(заавал биш)</span></label><textarea class="inp" id="vNote" rows="3"></textarea></div>
-    <button class="btn btn-gold btn-block" type="submit">${isViewing?"Үзлэг товлох":"Илгээх"}</button>
+    <button class="btn btn-gold btn-block" type="submit">${isViewing?"Уулзалт товлох":"Илгээх"}</button>
   </form>`);
   const f = $("#vForm"), n = $("#vName"), p = $("#vPhone");
   phoneInput(p); n.addEventListener("blur", ()=>{ if (n.getAttribute("aria-invalid")||n.value) vName(n); });
@@ -1806,7 +1806,7 @@ function renderDetail(id){
             <a class="btn btn-line" data-msgr target="_blank" rel="noopener" data-track="messenger_click">${ico("i-msg","sm")}Messenger</a>
             <a class="btn btn-line" data-viber target="_blank" rel="noopener" data-track="viber_click">${ico("i-viber","sm")}Viber</a>
           </div>
-          <button class="btn btn-ink btn-block" data-viewing ${sold?"disabled":""}>${ico("i-cal")}Үзлэг товлох</button>
+          <button class="btn btn-ink btn-block" data-viewing ${sold?"disabled":""}>${ico("i-cal")}Уулзалт товлох</button>
         </div>
         <p class="ref">Зарын дугаар: ${l.id.toUpperCase()} <span>Шинэчилсэн: ${l.updated}</span></p>
       </aside>
@@ -1930,7 +1930,7 @@ function renderBar(){
   const bb = $("#bbar");
   if (currentView==="detail"){
     const sold = DATA.find(x=>x.id===currentListing)?.status==="sold";
-    bb.innerHTML = `<a class="btn btn-gold" href="tel:" data-tel data-track="call_click">${ico("i-phone")}Залгах</a><button class="btn btn-ink" data-viewing ${sold?"disabled":""}>${ico("i-cal")}Үзлэг товлох</button>`;
+    bb.innerHTML = `<a class="btn btn-gold" href="tel:" data-tel data-track="call_click">${ico("i-phone")}Залгах</a><button class="btn btn-ink" data-viewing ${sold?"disabled":""}>${ico("i-cal")}Уулзалт товлох</button>`;
   } else {
     bb.innerHTML = `<a class="btn btn-gold" href="tel:" data-tel data-track="call_click">${ico("i-phone")}Залгах</a><a class="btn btn-line" data-msgr target="_blank" rel="noopener" data-track="messenger_click">${ico("i-msg")}Messenger</a><a class="ibtn savebtn" href="#saved" aria-label="Хадгалсан байрууд">${ico("i-heart")}<span class="badge" data-saved-count hidden>0</span></a>`;
   }
