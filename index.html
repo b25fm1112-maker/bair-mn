@@ -30,7 +30,7 @@
   --line:#D2D2D7; --accent:#0071E3; --accent-h:#0077ED; --on-accent:#FFFFFF;
   --new:#B64400; --danger:#E30000; --ok:#1A7F37; --heart:#FF375F;
   --glass:rgba(255,255,255,.72); --glass-line:rgba(0,0,0,.08);
-  --on-dark:#F5F5F7; --on-dark-muted:#A1A1A6; --dark-band:#000000;
+  --on-dark:#F5F5F7; --on-dark-muted:#A1A1A6; --dark-band:#000000; --pt-a:#FAFAFC; --pt-b:#D2D2D7;
   --scrim:rgba(0,0,0,.42);
   --gold:var(--accent); --gold-ink:var(--ink); --surface-2:var(--bg-2); --sage:var(--ok);
   --shadow:0 2px 6px rgba(0,0,0,.04),0 12px 32px -12px rgba(0,0,0,.14);
@@ -44,13 +44,13 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#000000; --bg-2:#161617; --surface:#1D1D1F; --ink:#F5F5F7; --muted:#A1A1A6;
   --line:#424245; --accent:#2997FF; --accent-h:#47A6FF; --on-accent:#FFFFFF; --new:#FF9F0A; --danger:#FF453A; --ok:#30D158;
-  --glass:rgba(29,29,31,.72); --glass-line:rgba(255,255,255,.1); --dark-band:#000000; --scrim:rgba(0,0,0,.6);
+  --glass:rgba(29,29,31,.72); --glass-line:rgba(255,255,255,.1); --dark-band:#000000; --pt-a:#3A3A3E; --pt-b:#141416; --scrim:rgba(0,0,0,.6);
   --shadow:0 2px 6px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6); --shadow-h:0 20px 48px -16px rgba(0,0,0,.7);
   color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#000000; --bg-2:#161617; --surface:#1D1D1F; --ink:#F5F5F7; --muted:#A1A1A6;
   --line:#424245; --accent:#2997FF; --accent-h:#47A6FF; --on-accent:#FFFFFF; --new:#FF9F0A; --danger:#FF453A; --ok:#30D158;
-  --glass:rgba(29,29,31,.72); --glass-line:rgba(255,255,255,.1); --dark-band:#000000; --scrim:rgba(0,0,0,.6);
+  --glass:rgba(29,29,31,.72); --glass-line:rgba(255,255,255,.1); --dark-band:#000000; --pt-a:#3A3A3E; --pt-b:#141416; --scrim:rgba(0,0,0,.6);
   --shadow:0 2px 6px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6); --shadow-h:0 20px 48px -16px rgba(0,0,0,.7);
   color-scheme:dark}
 @media (min-width:900px){:root{--rail:96px;--sec:112px}}
@@ -399,17 +399,18 @@ textarea.inp{min-height:96px;padding:12px 14px;resize:vertical}
 .dark .eyebrow{color:var(--on-dark-muted)}
 .agent{display:grid;gap:32px;padding-block:var(--sec)}
 @media (min-width:900px){.agent{grid-template-columns:5fr 7fr;gap:72px;align-items:center}}
-.portrait{position:relative;aspect-ratio:4/5;border-radius:var(--r-xl);overflow:hidden;background:radial-gradient(120% 90% at 30% 20%,#3a3a3c 0%,#1d1d1f 60%,#0b0b0c 100%);display:grid;place-items:center;max-width:480px}
-.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
-.deal{display:grid;gap:4px;padding:18px 22px;border-radius:var(--r-m);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);justify-self:start}
-.deal span{font-size:13px;color:var(--on-dark-muted)}
+.agent-sec{background:var(--bg-2);color:var(--ink);transition:background-color .4s var(--ease);margin-left:calc(-1 * var(--rail));padding-left:var(--rail)}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:var(--r-xl);overflow:hidden;background:radial-gradient(110% 80% at 50% 28%,var(--pt-a) 0%,var(--pt-b) 100%);transition:background .4s var(--ease);display:grid;place-items:center;max-width:480px}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+.deal{display:grid;gap:4px;padding:18px 22px;border-radius:var(--r-m);background:var(--surface);border:1px solid var(--line);justify-self:start}
+.deal span{font-size:13px;color:var(--muted)}
 .deal b{font-size:34px;font-weight:600;letter-spacing:-.03em;line-height:1.1}
 .portrait .cap{position:absolute;left:18px;bottom:18px;right:18px;font-size:12px;color:var(--on-dark-muted);display:flex;gap:6px;align-items:center}
-.agent .chips .chip{background:transparent;color:var(--on-dark);border-color:rgba(255,255,255,.22);min-height:36px;font-size:14px;cursor:default}
+.agent .chips .chip{background:transparent;color:var(--ink);border-color:var(--line);min-height:36px;font-size:14px;cursor:default}
 .contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
 .dark .btn-dline{border-color:rgba(255,255,255,.28);color:var(--on-dark)}
 .dark .btn-dline:hover{border-color:#fff}
-.phone-box{display:flex;align-items:center;gap:6px;padding:5px 5px 5px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.28);font-weight:600;font-variant-numeric:tabular-nums}
+.phone-box{display:flex;align-items:center;gap:6px;padding:5px 5px 5px 18px;border-radius:999px;border:1px solid var(--line);font-weight:600;font-variant-numeric:tabular-nums}
 .phone-box .btn{--bh:38px;padding:0 14px}
 
 /* owners */
@@ -869,7 +870,7 @@ option,optgroup{background:var(--surface);color:var(--ink)}
   </section>
 
   <!-- agent -->
-  <section class="dark" style="margin-top:var(--sec)" id="agent" aria-labelledby="agentH">
+  <section class="agent-sec" style="margin-top:var(--sec)" id="agent" aria-labelledby="agentH">
     <div class="wrap agent">
       <div class="portrait rv">
         <img src="img/agent.webp" alt="Үл хөдлөх хөрөнгийн агент Сугар-Эрдэнэ Л." loading="lazy" width="600" height="752">
