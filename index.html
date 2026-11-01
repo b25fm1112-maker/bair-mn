@@ -1,0 +1,2026 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bair.mn</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Улаанбаатарын сонгосон, шалгасан байрууд. Агент Бат-Амгалантай шууд холбогдоно.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bair.mn — Байр биш, дараагийн амьдралаа сонго.">
+<meta property="og:description" content="Сонгосон, шалгасан байрууд. Агенттай шууд харилцана.">
+<meta property="og:image" content="img/hero.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="preload" as="image" href="img/hero.webp" fetchpriority="high">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"RealEstateAgent","name":"Bair.mn — Бат-Амгалан","areaServed":"Улаанбаатар","url":"https://bair.mn","slogan":"Байр биш, дараагийн амьдралаа сонго."}
+</script>
+<style>
+/* =========================================================
+   === TOKENS ===
+   Layout: fixed glass icon rail on the left (desktop), framed photo hero with
+   a floating search pill on top, Apple-style gallery rows and soft grey tiles.
+   One typeface (Inter), one accent (blue), neutral greys.
+   ========================================================= */
+:root{
+  --bg:#FFFFFF; --bg-2:#F5F5F7; --surface:#FFFFFF; --ink:#1D1D1F; --muted:#6E6E73;
+  --line:#D2D2D7; --accent:#0071E3; --accent-h:#0077ED; --on-accent:#FFFFFF;
+  --new:#B64400; --danger:#E30000; --ok:#1A7F37; --heart:#FF375F;
+  --glass:rgba(255,255,255,.72); --glass-line:rgba(0,0,0,.08);
+  --on-dark:#F5F5F7; --on-dark-muted:#A1A1A6; --dark-band:#000000;
+  --scrim:rgba(0,0,0,.42);
+  --gold:var(--accent); --gold-ink:var(--ink); --surface-2:var(--bg-2); --sage:var(--ok);
+  --shadow:0 2px 6px rgba(0,0,0,.04),0 12px 32px -12px rgba(0,0,0,.14);
+  --shadow-h:0 20px 48px -16px rgba(0,0,0,.24);
+  --f:"Inter",-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Arial,sans-serif;
+  --ease:cubic-bezier(.25,.1,.25,1); --ease-out:cubic-bezier(.2,.7,.2,1);
+  --r-s:12px; --r-m:18px; --r-l:28px; --r-xl:36px;
+  --gut:max(16px,env(safe-area-inset-left,0px)); --gut-r:max(16px,env(safe-area-inset-right,0px));
+  --rail:0px; --sec:72px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#000000; --bg-2:#161617; --surface:#1D1D1F; --ink:#F5F5F7; --muted:#A1A1A6;
+  --line:#424245; --accent:#2997FF; --accent-h:#47A6FF; --on-accent:#FFFFFF; --new:#FF9F0A; --danger:#FF453A; --ok:#30D158;
+  --glass:rgba(29,29,31,.72); --glass-line:rgba(255,255,255,.1); --dark-band:#000000; --scrim:rgba(0,0,0,.6);
+  --shadow:0 2px 6px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6); --shadow-h:0 20px 48px -16px rgba(0,0,0,.7);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#000000; --bg-2:#161617; --surface:#1D1D1F; --ink:#F5F5F7; --muted:#A1A1A6;
+  --line:#424245; --accent:#2997FF; --accent-h:#47A6FF; --on-accent:#FFFFFF; --new:#FF9F0A; --danger:#FF453A; --ok:#30D158;
+  --glass:rgba(29,29,31,.72); --glass-line:rgba(255,255,255,.1); --dark-band:#000000; --scrim:rgba(0,0,0,.6);
+  --shadow:0 2px 6px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.6); --shadow-h:0 20px 48px -16px rgba(0,0,0,.7);
+  color-scheme:dark}
+@media (min-width:900px){:root{--rail:96px;--sec:112px}}
+@media (min-width:1200px){:root{--sec:140px}}
+
+/* === BASE === */
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:17px;line-height:1.5;letter-spacing:-.011em;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-left:var(--rail)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit}
+button{cursor:pointer}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1240px;margin-inline:auto;padding-left:var(--gut);padding-right:var(--gut)}
+@media (min-width:900px){.wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:fixed;left:16px;top:-60px;z-index:100;background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:600}
+.skip:focus{top:16px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.num{font-variant-numeric:tabular-nums}
+.ico{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ico.lg{width:26px;height:26px}
+.ico.sm{width:16px;height:16px}
+
+/* type: one family, weight + size do the work */
+.display{font-size:48px;line-height:1.04;font-weight:600;letter-spacing:-.035em}
+.h1{font-size:40px;line-height:1.08;font-weight:600;letter-spacing:-.03em}
+.h2{font-size:32px;line-height:1.1;font-weight:600;letter-spacing:-.025em}
+.h3{font-size:21px;font-weight:600;line-height:1.25;letter-spacing:-.02em}
+.bodyL{font-size:19px;line-height:1.45}
+.small{font-size:14px;font-weight:500;line-height:1.45;letter-spacing:-.005em}
+.eyebrow{font-size:14px;font-weight:600;line-height:1.3;color:var(--muted);letter-spacing:-.005em}
+.muted{color:var(--muted)}
+.price{font-size:22px;font-weight:600;line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.measure{max-width:60ch}
+.ital{font-style:normal;color:var(--muted)}
+.hero .ital,.cta .ital{color:rgba(255,255,255,.72)}
+@media (min-width:900px){.display{font-size:80px}.h1{font-size:56px}.h2{font-size:48px}.h3{font-size:24px}.bodyL{font-size:21px}.price{font-size:24px}}
+
+/* === BUTTONS === */
+.btn{--bh:46px;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:var(--bh);padding:0 22px;border-radius:999px;border:1px solid transparent;font-weight:500;font-size:16px;text-decoration:none;white-space:nowrap;transition:transform .2s var(--ease),background-color .2s var(--ease),border-color .2s,opacity .2s,color .2s}
+.btn:active{transform:scale(.96)}
+.btn[disabled]{opacity:.4;pointer-events:none}
+.btn-gold{background:var(--accent);color:var(--on-accent)}
+.btn-gold:hover{background:var(--accent-h)}
+.btn-ink{background:var(--ink);color:var(--bg)}
+.btn-ink:hover{opacity:.85}
+.btn-line{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn-line:hover{border-color:var(--ink)}
+.btn-glass{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35);color:#fff;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.btn-glass:hover{background:rgba(255,255,255,.3)}
+.btn-ghost{background:transparent;color:var(--accent);padding:0 8px}
+.btn-ghost:hover{text-decoration:underline}
+.btn-sm{--bh:44px;padding:0 16px;font-size:15px}
+.btn-block{width:100%}
+.ibtn{width:44px;height:44px;display:inline-grid;place-items:center;border-radius:999px;border:0;background:var(--bg-2);color:var(--ink);transition:background-color .2s,transform .2s}
+.ibtn:hover{background:color-mix(in srgb,var(--ink) 10%,var(--bg-2))}
+.ibtn:active{transform:scale(.92)}
+.spin{width:18px;height:18px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.link{display:inline-flex;gap:4px;align-items:center;font-weight:500;color:var(--accent);text-decoration:none}
+.link:hover{text-decoration:underline}
+
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:15px;font-weight:500;transition:background-color .2s,border-color .2s,color .2s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"],.chip[aria-checked="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.tag{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;background:var(--glass);color:var(--ink);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.tag.new{color:var(--new)}
+.tag.feat{color:var(--accent)}
+.tag.drop{color:var(--danger)}
+.ph{display:inline-block;padding:0 6px;border:1px dashed currentColor;border-radius:6px;opacity:.7;font-size:.9em}
+.glass{background:var(--glass);border:1px solid var(--glass-line);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%)}
+
+/* === RAIL (desktop left nav) === */
+.rail{display:none}
+@media (min-width:900px){
+  .rail{position:fixed;z-index:50;left:max(16px,env(safe-area-inset-left,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 8px;border-radius:999px;box-shadow:var(--shadow)}
+  .rail .sep{width:24px;height:1px;background:var(--line);margin:6px 0}
+  .ri{position:relative;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:var(--ink);text-decoration:none;border:0;background:transparent;transition:background-color .2s,transform .2s}
+  .ri:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+  .ri:active{transform:scale(.92)}
+  .ri[aria-current="page"]{background:var(--ink);color:var(--bg)}
+  .ri .tip{position:absolute;left:calc(100% + 14px);top:50%;transform:translate(-6px,-50%);padding:6px 12px;border-radius:10px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:500;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}
+  .ri:hover .tip,.ri:focus-visible .tip{opacity:1;transform:translate(0,-50%)}
+  .ri .badge{top:4px;right:4px}
+  .rail-logo{width:48px;height:40px;display:grid;place-items:center;color:var(--ink);font-weight:700;font-size:22px;letter-spacing:-.05em;text-decoration:none;margin-bottom:2px}
+  .rail-logo span{color:var(--accent)}
+  .rail-av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#3a3a3c,#1d1d1f);color:#fff;font-weight:600;font-size:14px}
+}
+.badge{position:absolute;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--heart);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;font-variant-numeric:tabular-nums;top:2px;right:0}
+.savebtn{position:relative}
+
+/* top-right contact cluster (desktop) */
+.tr{display:none}
+@media (min-width:900px){
+  .tr{position:fixed;z-index:50;top:calc(env(safe-area-inset-top,0px) + 28px);right:max(28px,env(safe-area-inset-right,0px));display:flex;gap:8px;align-items:center;padding:6px;border-radius:999px;box-shadow:var(--shadow)}
+  .tr .tel{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:500}
+  .tr .tel:hover{background:color-mix(in srgb,var(--ink) 7%,transparent)}
+}
+
+/* mobile header */
+.hdr{position:fixed;z-index:50;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 8px);padding-left:var(--gut);padding-right:var(--gut-r);pointer-events:none}
+.hdr-in{pointer-events:auto;height:56px;border-radius:999px;display:flex;align-items:center;gap:6px;padding:0 6px 0 20px;box-shadow:var(--shadow)}
+.hdr .ibtn{background:transparent}
+.logo{display:flex;align-items:baseline;text-decoration:none;font-weight:700;font-size:21px;letter-spacing:-.04em;line-height:1}
+.logo span{color:var(--muted);font-weight:500}
+.hdr-r{margin-left:auto;display:flex;gap:2px}
+@media (min-width:900px){.hdr{display:none}}
+
+/* mobile menu */
+.mmenu{position:fixed;inset:0;z-index:70;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 16px) var(--gut-r) calc(env(safe-area-inset-bottom,0px) + 24px) var(--gut);background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility .3s}
+.mmenu.open{opacity:1;visibility:visible}
+.mmenu-top{display:flex;justify-content:space-between;align-items:center;height:56px;padding-left:4px}
+.mmenu nav{display:flex;flex-direction:column;margin-top:24px}
+.mmenu nav a{font-size:30px;font-weight:600;letter-spacing:-.03em;line-height:1.25;text-decoration:none;padding:10px 0;display:flex;justify-content:space-between;align-items:center;opacity:0;transform:translateY(8px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.mmenu.open nav a{opacity:1;transform:none}
+.mmenu.open nav a:nth-child(2){transition-delay:.03s}.mmenu.open nav a:nth-child(3){transition-delay:.06s}.mmenu.open nav a:nth-child(4){transition-delay:.09s}.mmenu.open nav a:nth-child(5){transition-delay:.12s}.mmenu.open nav a:nth-child(6){transition-delay:.15s}
+.mmenu nav a .ico{color:var(--muted)}
+.mmenu-foot{margin-top:auto;display:grid;gap:12px}
+
+main{display:block;min-height:60vh}
+
+/* === HERO === */
+.hero-wrap{padding:8px 8px 0}
+@media (min-width:900px){.hero-wrap{padding:16px 16px 0 0}}
+.hero{position:relative;height:640px;border-radius:var(--r-xl);overflow:hidden;isolation:isolate;color:#fff;background:#2a2a2c}
+@media (min-width:900px){.hero{height:min(800px,calc(100vh - 32px));min-height:640px}}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;transform:scale(var(--hs,1.08));transition:transform 1.6s var(--ease-out);z-index:-2;will-change:transform}
+.hero.ready .hero-bg{--hs:1}
+.hero-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.18) 45%,rgba(0,0,0,0) 70%),linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 40%,rgba(0,0,0,.35) 100%)}
+.hero-copy{position:absolute;left:20px;right:20px;bottom:72px;max-width:640px}
+.hero .eyebrow{color:rgba(255,255,255,.85);letter-spacing:.02em;text-transform:uppercase;font-size:12px}
+.hero h1{margin-top:12px}
+.hero-sub{margin-top:14px;color:rgba(255,255,255,.88);max-width:36ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+@media (min-width:900px){
+  .hero-copy{left:44px;top:136px;bottom:auto;max-width:min(1000px,calc(100% - 88px))}
+  .hero .display{font-size:72px}
+}
+.rv-line{display:block;overflow:hidden;padding-bottom:.06em}
+.rv-line>span{display:block;transform:translateY(105%);animation:up .9s var(--ease-out) forwards}
+.hero .fade{opacity:0;transform:translateY(10px);animation:fade .8s var(--ease-out) forwards}
+@keyframes up{to{transform:none}}
+@keyframes fade{to{opacity:1;transform:none}}
+
+/* search pill */
+.search{color:var(--ink);display:grid;gap:12px}
+.seg{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;padding:3px;border-radius:999px;background:color-mix(in srgb,var(--ink) 7%,transparent);gap:2px}
+.seg button{min-height:40px;padding:0 16px;border-radius:999px;border:0;background:transparent;font-weight:500;font-size:15px;color:var(--ink);transition:background-color .2s}
+.seg button[aria-checked="true"]{background:var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.14)}
+.search-row{display:grid;gap:12px}
+.field{display:grid;gap:6px;min-width:0}
+.field>label,.flabel{font-size:13px;font-weight:500;color:var(--muted)}
+.sel,.inp{width:100%;min-height:48px;border-radius:var(--r-s);border:1px solid var(--line);background:var(--surface);padding:0 14px;font-size:17px;transition:border-color .2s,box-shadow .2s}
+.sel{appearance:none;-webkit-appearance:none;padding-right:38px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.sel:focus,.inp:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent)}
+textarea.inp{min-height:96px;padding:12px 14px;resize:vertical}
+.inp[aria-invalid="true"]{border-color:var(--danger)}
+.err{display:flex;gap:6px;align-items:center;color:var(--danger);font-size:14px;font-weight:500}
+.room-chips{display:flex;gap:6px}
+.room-chips .chip{min-width:44px;justify-content:center;padding:0 12px}
+.search-mobile{margin:-44px 16px 0;position:relative;z-index:5;padding:16px;border-radius:var(--r-l);box-shadow:var(--shadow)}
+.search-desk{display:none}
+@media (min-width:900px){
+  .search-mobile{display:none}
+  .search-desk{position:absolute;z-index:5;top:24px;left:24px;right:auto;display:flex;align-items:center;gap:8px;padding:6px;border-radius:999px;box-shadow:0 8px 30px rgba(0,0,0,.15);max-width:calc(100% - 48px)}
+  .search-desk .seg button{min-height:44px}
+  .search-desk .search-row{display:flex;align-items:center;gap:0}
+  .search-desk .field{padding:2px 18px;border-left:1px solid color-mix(in srgb,var(--ink) 12%,transparent);gap:0}
+  .search-desk .field>label,.search-desk .flabel{font-size:11px;font-weight:500}
+  .search-desk .sel{min-height:28px;border:0;background-color:transparent;padding:0 26px 0 0;font-size:15px;font-weight:600;background-position:right 2px center;box-shadow:none;width:auto}
+  .search-desk .room-chips .chip{min-height:30px;min-width:30px;padding:0 8px;font-size:13px;border-color:transparent;background:transparent}
+  .search-desk .room-chips .chip:hover{background:color-mix(in srgb,var(--ink) 7%,transparent)}
+  .search-desk .room-chips .chip[aria-pressed="true"]{background:var(--ink)}
+  .search-desk button[type=submit]{margin-left:6px;width:48px;height:48px;padding:0;border-radius:50%}
+  .search-desk button[type=submit] .lbl{display:none}
+}
+@media (min-width:900px) and (max-width:1380px){.search-desk .rooms-f{display:none}}
+@media (min-width:900px){.search-desk{max-width:calc(100% - 320px)}}
+@media (max-height:800px){.hcard-l{display:none!important}}
+
+/* hero floating cards */
+.hcard{display:none}
+@media (min-width:1100px){
+  .hcard{display:flex;position:absolute;z-index:5;bottom:24px;color:var(--ink);text-decoration:none;border-radius:var(--r-l);box-shadow:var(--shadow);transition:transform .35s var(--ease-out),box-shadow .35s}
+  .hcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-h)}
+  .hcard-l{left:24px;width:380px;padding:10px;gap:14px;align-items:stretch}
+  .hcard-l .tx{display:grid;gap:6px;align-content:space-between;padding:10px 4px 6px 8px;flex:1}
+  .hcard-l img{width:140px;border-radius:18px;object-fit:cover}
+  .feat-glass{right:24px;width:340px;flex-direction:column;padding:10px;gap:12px}
+  .feat-glass img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:18px}
+}
+.feat-glass .fg-b{display:grid;gap:6px;padding:0 8px 8px}
+.fg-row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.arrow-dot{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--bg);flex:none;transition:transform .3s var(--ease-out)}
+.hcard:hover .arrow-dot{transform:rotate(45deg)}
+
+.mstrip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px var(--gut-r) 4px var(--gut);scrollbar-width:none}
+.mstrip::-webkit-scrollbar{display:none}
+.mstrip>a{background:var(--bg-2)!important;border:0!important}
+@media (min-width:900px){.mstrip{display:none}}
+
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:20px}
+.trust>div{display:flex;gap:12px;align-items:center;padding:18px;border-radius:var(--r-m);background:var(--bg-2)}
+.trust .ti{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--surface);color:var(--ink);flex:none}
+.trust b{display:block;font-size:15px;font-weight:600;line-height:1.3}
+.trust span{font-size:13px;color:var(--muted);display:block;line-height:1.4}
+@media (min-width:900px){.trust{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:16px}.trust>div{padding:22px}}
+
+/* === SECTIONS === */
+.sec{padding-block:var(--sec) 0}
+.sec-last{padding-bottom:var(--sec)}
+.sec-head{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:flex-end;margin-bottom:28px}
+.sec-head .eyebrow{margin-bottom:8px}
+.sec-head .h2 .ital{display:inline}
+@media (min-width:900px){.sec-head{margin-bottom:40px}}
+.rv{opacity:.6;transform:translateY(24px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.rv.in{opacity:1;transform:none}
+
+/* === CARDS === */
+.grid{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:600px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}}
+.card{position:relative;display:flex;flex-direction:column;background:var(--bg-2);border-radius:var(--r-l);overflow:hidden;cursor:pointer;transition:transform .45s var(--ease-out),box-shadow .45s var(--ease-out)}
+.card:hover{transform:scale(1.015);box-shadow:var(--shadow-h)}
+.card-media{position:relative;aspect-ratio:4/3;background:color-mix(in srgb,var(--ink) 6%,var(--bg-2));overflow:hidden;margin:8px 8px 0;border-radius:calc(var(--r-l) - 8px)}
+.card-media .slides{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.card-media .slides::-webkit-scrollbar{display:none}
+.card-media .slides img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:start;transition:transform .8s var(--ease-out)}
+.card:hover .card-media img{transform:scale(1.05)}
+.card-tags{position:absolute;left:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap;z-index:2;max-width:calc(100% - 72px)}
+.heart{position:absolute;right:10px;top:10px;z-index:3;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:0;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink)}
+.heart[aria-pressed="true"] .ico,.d-top [data-heart][aria-pressed="true"] .ico{fill:var(--heart);stroke:var(--heart)}
+.heart.pop .ico,[data-heart].pop .ico{animation:pop .4s var(--ease-out)}
+@keyframes pop{40%{transform:scale(1.35)}100%{transform:scale(1)}}
+.dots{position:absolute;left:0;right:0;bottom:10px;display:flex;gap:5px;justify-content:center;z-index:2;pointer-events:none}
+.dots i{width:6px;height:6px;border-radius:9px;background:rgba(255,255,255,.55);transition:width .3s var(--ease-out),background-color .3s}
+.dots i.on{background:#fff;width:16px}
+.cm-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:36px;height:36px;border-radius:50%;border:0;display:grid;place-items:center;background:rgba(255,255,255,.9);color:#1d1d1f;opacity:0;transition:opacity .2s}
+.cm-prev{left:10px}.cm-next{right:10px}
+@media (hover:hover){.card:hover .cm-nav,.cm-nav:focus-visible{opacity:1}}
+.card-body{display:grid;gap:6px;padding:16px 20px 20px}
+.card-loc{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--muted);font-weight:500}
+.card-title{font-size:19px;font-weight:600;letter-spacing:-.02em;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-decoration:none}
+.specs{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px;color:var(--muted)}
+.specs span{display:inline-flex;align-items:center;gap:5px}
+.card-price{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:8px}
+.old{font-size:14px;color:var(--muted);text-decoration:line-through;margin-left:8px;font-weight:400}
+.card-mort{font-size:13px;color:var(--muted)}
+.card.sold{cursor:default}
+.card.sold:hover{transform:none;box-shadow:none}
+.sold-ov{position:absolute;inset:0;z-index:4;display:grid;place-items:center;background:rgba(0,0,0,.35);backdrop-filter:grayscale(1);-webkit-backdrop-filter:grayscale(1)}
+.sold-ov span{padding:8px 18px;border-radius:999px;background:#fff;color:#1d1d1f;font-weight:600;font-size:14px}
+.card.sold .card-body{opacity:.55}
+.example{font-size:12px;color:var(--muted);display:inline-flex;gap:6px;align-items:center}
+.sk{background:linear-gradient(90deg,var(--bg-2) 0%,color-mix(in srgb,var(--bg-2) 40%,var(--surface)) 50%,var(--bg-2) 100%);background-size:200% 100%;animation:shim 1.3s linear infinite;border-radius:10px}
+@keyframes shim{to{background-position:-200% 0}}
+.img-err{display:grid;place-items:center;gap:6px;color:var(--muted);font-size:13px;background:var(--bg-2)}
+
+/* Apple-style horizontal gallery */
+.hscroll{display:grid;grid-auto-flow:column;grid-auto-columns:86%;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px var(--gut-r) 24px var(--gut);margin-inline:calc(-1 * var(--gut));scroll-padding-left:var(--gut)}
+.hscroll::-webkit-scrollbar{display:none}
+.hscroll>*{scroll-snap-align:start}
+@media (min-width:600px){.hscroll{grid-auto-columns:calc((100% - 16px)/2)}}
+@media (min-width:900px){.hscroll{grid-auto-columns:380px;gap:20px;margin-inline:-32px;padding-inline:32px;scroll-padding-left:32px}}
+.gnav{display:flex;gap:10px;justify-content:flex-end;margin-top:4px}
+.gnav .ibtn[disabled]{opacity:.35;pointer-events:none}
+
+/* types */
+.types{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,42%);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 8px}
+.types::-webkit-scrollbar{display:none}
+@media (min-width:900px){.types{grid-auto-flow:row;grid-template-columns:repeat(6,minmax(0,1fr));overflow:visible}}
+.type{scroll-snap-align:start;display:grid;gap:18px;align-content:space-between;min-height:160px;padding:22px;border-radius:var(--r-l);border:0;background:var(--bg-2);text-align:left;transition:transform .35s var(--ease-out),background-color .3s}
+.type:hover{transform:scale(1.03)}
+.type .ti{color:var(--ink)}
+.type b{display:block;font-size:16px;font-weight:600;letter-spacing:-.015em;line-height:1.3}
+.type span{font-size:13px;color:var(--muted)}
+
+/* locations bento */
+.bento{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.loc{position:relative;border-radius:var(--r-l);overflow:hidden;min-height:210px;color:#fff;text-align:left;border:0;padding:0;background:#222;isolation:isolate}
+.loc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease-out);z-index:-1}
+.loc:hover img{transform:scale(1.06)}
+.loc::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 45%,rgba(0,0,0,.25) 100%)}
+.loc-in{position:absolute;inset:0 0 auto;padding:18px;display:grid;gap:4px}
+.loc-in b{font-weight:600;font-size:24px;letter-spacing:-.025em;line-height:1.1}
+.loc-in span{font-size:14px;color:rgba(255,255,255,.9);line-height:1.35}
+.loc-n{position:absolute;bottom:14px;left:16px;padding:5px 12px;border-radius:999px;font-size:13px;font-weight:600;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.loc.big{grid-column:1/-1;min-height:300px}
+.loc.big .loc-in b{font-size:34px}
+.loc:last-child{grid-column:1/-1}
+@media (min-width:900px){
+  .bento{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:260px 260px 220px;gap:16px}
+  .loc{min-height:0}
+  .loc.big{grid-column:1/3;grid-row:1/3}
+  .loc.big .loc-in{padding:32px}
+  .loc.big .loc-in b{font-size:56px}
+  .loc-in{padding:22px}
+}
+
+/* calculator */
+.calc{display:grid;gap:16px;border-radius:var(--r-xl);background:var(--bg-2);padding:20px}
+@media (min-width:900px){.calc{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:24px;padding:24px}}
+.calc-in{display:grid;gap:24px;padding:8px}
+@media (min-width:900px){.calc-in{padding:20px}}
+.range{width:100%;accent-color:var(--accent);height:44px}
+.range-row{display:flex;justify-content:space-between;align-items:baseline}
+.range-row b{font-variant-numeric:tabular-nums;font-weight:600}
+.inp-suffix{position:relative}
+.inp-suffix .inp{padding-right:44px;font-variant-numeric:tabular-nums;font-weight:600;font-size:20px;min-height:56px}
+.inp-suffix i{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-style:normal;color:var(--muted);font-weight:600}
+.calc-out{border-radius:var(--r-l);padding:28px;background:var(--surface);color:var(--ink);display:grid;gap:18px;align-content:start;box-shadow:var(--shadow)}
+.calc-out .eyebrow{color:var(--muted)}
+.big-pay{font-size:48px;font-weight:600;line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+@media (min-width:900px){.big-pay{font-size:64px}}
+.kv{display:grid;gap:10px;font-size:15px}
+.kv>div{display:flex;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums}
+.ratio{height:8px;border-radius:999px;overflow:hidden;display:flex;background:var(--bg-2)}
+.ratio i{display:block;height:100%;transition:width .6s var(--ease-out)}
+.ratio .p{background:var(--accent)}.ratio .r{background:color-mix(in srgb,var(--ink) 25%,var(--bg-2))}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.note{font-size:13px;color:var(--muted)}
+.btn-dline{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn-dline:hover{border-color:var(--ink)}
+
+/* why */
+.why{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (min-width:900px){.why{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}}
+.why>div{display:grid;gap:10px;align-content:start;padding:24px;border-radius:var(--r-l);background:var(--bg-2);min-height:200px}
+.why .ti{color:var(--accent);width:30px;height:30px}
+.why p{font-size:15px;color:var(--muted);line-height:1.45}
+
+/* agent (dark band) */
+.dark{background:var(--dark-band);color:var(--on-dark)}
+.dark .muted{color:var(--on-dark-muted)}
+.dark .eyebrow{color:var(--on-dark-muted)}
+.agent{display:grid;gap:32px;padding-block:var(--sec)}
+@media (min-width:900px){.agent{grid-template-columns:5fr 7fr;gap:72px;align-items:center}}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:var(--r-xl);overflow:hidden;background:radial-gradient(120% 90% at 30% 20%,#3a3a3c 0%,#1d1d1f 60%,#0b0b0c 100%);display:grid;place-items:center;max-width:480px}
+.portrait .mono{font-size:160px;line-height:1;color:rgba(255,255,255,.88);font-weight:600;letter-spacing:-.05em}
+.portrait .cap{position:absolute;left:18px;bottom:18px;right:18px;font-size:12px;color:var(--on-dark-muted);display:flex;gap:6px;align-items:center}
+.agent .chips .chip{background:transparent;color:var(--on-dark);border-color:rgba(255,255,255,.22);min-height:36px;font-size:14px;cursor:default}
+.contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.dark .btn-dline{border-color:rgba(255,255,255,.28);color:var(--on-dark)}
+.dark .btn-dline:hover{border-color:#fff}
+.phone-box{display:flex;align-items:center;gap:6px;padding:5px 5px 5px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.28);font-weight:600;font-variant-numeric:tabular-nums}
+.phone-box .btn{--bh:38px;padding:0 14px}
+
+/* owners */
+.owners{display:grid;gap:16px}
+@media (min-width:900px){.owners{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px}}
+.own{border-radius:var(--r-xl);padding:28px;display:grid;gap:24px;align-content:space-between}
+@media (min-width:900px){.own{padding:48px}}
+.own-a{background:var(--bg-2)}
+.steps{list-style:none;margin:0;padding:0;display:grid;counter-reset:s}
+.steps li{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--line);counter-increment:s;align-items:center}
+.steps li::before{content:counter(s);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--bg);font-weight:600;font-size:14px;font-variant-numeric:tabular-nums}
+.steps b{display:block;font-weight:600}
+.steps span{font-size:14px;color:var(--muted)}
+.own-b{position:relative;overflow:hidden;color:#fff;background:#111;isolation:isolate;min-height:460px}
+.own-b img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s var(--ease-out)}
+.own-b:hover img{transform:scale(1.04)}
+.own-b::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.5),rgba(0,0,0,.1) 40%,rgba(0,0,0,.75))}
+.own-b .eyebrow{color:rgba(255,255,255,.8)}
+.pk{display:grid;gap:8px}
+.pk div{display:flex;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:var(--r-m);background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);font-size:15px}
+.pk span{color:rgba(255,255,255,.78);font-size:14px}
+
+/* CTA */
+.cta{position:relative;margin:var(--sec) 8px 0;border-radius:var(--r-xl);overflow:hidden;color:#fff;isolation:isolate;background:#0a0a0a}
+@media (min-width:900px){.cta{margin:var(--sec) 16px 0 0}}
+.cta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.cta::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,0,0,.7),rgba(0,0,0,.15))}
+.cta-in{padding:80px 24px;display:grid;gap:24px;justify-items:start}
+@media (min-width:900px){.cta-in{padding:140px 64px}}
+
+/* footer */
+.foot{padding-block:64px calc(32px + env(safe-area-inset-bottom,0px));font-size:14px}
+.foot-grid{display:grid;gap:4px}
+@media (min-width:900px){.foot-grid{grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px}}
+.foot details{border-bottom:1px solid var(--line)}
+.foot summary{list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:52px;font-weight:600;cursor:pointer}
+.foot summary::-webkit-details-marker{display:none}
+.foot ul{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:2px}
+.foot li a,.foot li{font-size:15px;color:var(--muted);text-decoration:none;min-height:36px;display:flex;align-items:center}
+.foot li a:hover{color:var(--ink);text-decoration:underline}
+@media (min-width:900px){.foot details{border:0}.foot summary{pointer-events:none;min-height:auto;margin-bottom:12px}.foot summary .ico{display:none}}
+.foot-bot{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;color:var(--muted)}
+.theme-sw{display:inline-flex;padding:3px;border-radius:999px;background:var(--bg-2);gap:2px}
+.theme-sw button{min-height:36px;padding:0 14px;border:0;border-radius:999px;background:transparent;font-size:13px;font-weight:500;color:var(--muted)}
+.theme-sw button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+
+/* bottom bar (mobile) */
+.bbar{position:fixed;z-index:45;left:0;right:0;bottom:0;padding:8px var(--gut-r) calc(8px + env(safe-area-inset-bottom,0px)) var(--gut);display:flex;gap:8px;border-width:1px 0 0;transition:transform .35s var(--ease-out)}
+.bbar.hide{transform:translateY(110%)}
+.bbar .btn{--bh:48px;flex:1}
+.bbar .btn-gold{flex:1.5}
+.bbar .ibtn{width:48px;height:48px;flex:none}
+@media (min-width:900px){.bbar{display:none}}
+@media (max-width:899px){body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}}
+
+/* toast */
+.toasts{position:fixed;z-index:90;left:50%;transform:translateX(-50%);bottom:calc(24px + env(safe-area-inset-bottom,0px));display:grid;gap:8px;width:max-content;max-width:calc(100vw - 32px)}
+@media (max-width:899px){.toasts{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
+.toast{display:flex;align-items:center;gap:10px;padding:10px 10px 10px 16px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:14px;font-weight:500;box-shadow:var(--shadow-h);animation:tin .35s var(--ease-out)}
+.toast.ok .ico{color:var(--ok)}
+.toast.bad .ico{color:var(--danger)}
+.toast button{border:0;background:transparent;color:var(--accent);font-weight:600;min-height:36px;padding:0 10px;border-radius:999px}
+@keyframes tin{from{opacity:0;transform:translateY(12px) scale(.96)}}
+
+/* listings view */
+.page-head{padding-top:calc(env(safe-area-inset-top,0px) + 96px)}
+@media (min-width:900px){.page-head{padding-top:calc(env(safe-area-inset-top,0px) + 56px)}}
+.fbar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 72px);z-index:30;margin-top:24px;padding:6px;border-radius:999px;box-shadow:var(--shadow);display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.fbar::-webkit-scrollbar{display:none}
+@media (min-width:900px){.fbar{top:calc(env(safe-area-inset-top,0px) + 16px);margin-right:280px}}
+@media (min-width:1300px){.fbar{margin-right:240px}}
+.fbar .sel{min-height:44px;width:auto;border-radius:999px;font-size:15px;font-weight:500;flex:none;padding-left:16px;border-color:transparent;background-color:color-mix(in srgb,var(--ink) 5%,transparent)}
+.fbar .seg{flex:none}
+.fbar .chip{border-color:transparent;background:color-mix(in srgb,var(--ink) 5%,transparent);flex:none}
+.fbar .chip[aria-pressed="true"]{background:var(--ink)}
+.fbar .grow{flex:1}
+.active-f{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px}
+.active-f .chip{min-height:36px;font-size:13px;background:var(--bg-2);border-color:transparent}
+.result-n{margin:20px 0;font-size:16px;color:var(--muted)}
+.result-n b{color:var(--ink);font-variant-numeric:tabular-nums}
+.empty{display:grid;justify-items:center;text-align:center;gap:14px;padding:64px 16px;border-radius:var(--r-xl);background:var(--bg-2)}
+.empty .ti{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:var(--surface);color:var(--ink)}
+.empty p{max-width:46ch;color:var(--muted)}
+
+/* sheet / modal */
+.overlay{position:fixed;inset:0;z-index:80;background:var(--scrim);opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility .3s}
+.overlay.open{opacity:1;visibility:visible}
+.sheet{position:fixed;z-index:81;left:0;right:0;bottom:0;max-height:92vh;max-height:92dvh;overflow:auto;background:var(--surface);border-radius:var(--r-l) var(--r-l) 0 0;padding:8px var(--gut-r) calc(24px + env(safe-area-inset-bottom,0px)) var(--gut);transform:translateY(105%);transition:transform .4s var(--ease-out),visibility .4s;visibility:hidden;overscroll-behavior:contain}
+.sheet.open{transform:none;visibility:visible}
+.sheet .grab{width:40px;height:5px;border-radius:9px;background:var(--line);margin:6px auto 12px}
+@media (min-width:700px){
+  .sheet{left:50%;right:auto;top:50%;bottom:auto;width:min(560px,calc(100vw - 48px));border-radius:var(--r-xl);padding:28px 32px 32px;transform:translate(-50%,-46%) scale(.98);opacity:0;transition:transform .35s var(--ease-out),opacity .35s,visibility .35s}
+  .sheet.open{transform:translate(-50%,-50%);opacity:1}
+  .sheet .grab{display:none}
+  .sheet.drawer{left:auto;right:0;top:0;bottom:0;max-height:none;height:100%;width:min(420px,100vw);border-radius:var(--r-xl) 0 0 var(--r-xl);transform:translateX(105%);opacity:1}
+  .sheet.drawer.open{transform:none}
+}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
+.form{display:grid;gap:18px}
+.date-chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.date-chips::-webkit-scrollbar{display:none}
+.date-chips .chip{flex:none;flex-direction:column;gap:0;min-height:60px;padding:6px 14px;line-height:1.2}
+.date-chips .chip small{font-size:12px;font-weight:400;opacity:.75}
+.prefill{display:flex;gap:12px;align-items:center;padding:10px;border-radius:var(--r-m);background:var(--bg-2)}
+.prefill img{width:64px;height:48px;border-radius:10px;object-fit:cover}
+.prefill b{font-size:15px;display:block;line-height:1.3}
+.prefill span{font-size:13px;color:var(--muted)}
+.tel-wrap{display:flex}
+.tel-wrap span{display:grid;place-items:center;padding:0 12px;border:1px solid var(--line);border-right:0;border-radius:var(--r-s) 0 0 var(--r-s);background:var(--bg-2);font-weight:500;color:var(--muted)}
+.tel-wrap .inp{border-radius:0 var(--r-s) var(--r-s) 0;font-variant-numeric:tabular-nums}
+.success{display:grid;justify-items:center;text-align:center;gap:14px;padding:24px 0}
+.success .ti{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--ok) 14%,transparent);color:var(--ok)}
+.check-row{display:flex;gap:10px;align-items:center;min-height:44px}
+.check-row input{width:20px;height:20px;accent-color:var(--accent)}
+
+/* detail */
+.d-top{display:flex;justify-content:space-between;align-items:center;gap:8px;padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
+@media (min-width:900px){.d-top{padding-top:calc(env(safe-area-inset-top,0px) + 32px);padding-right:260px}}
+.d-top .r{display:flex;gap:8px}
+.gal{margin-top:16px}
+.gal-m{display:none}
+@media (min-width:900px){
+  .gal-m{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:250px 250px;gap:8px;border-radius:var(--r-xl);overflow:hidden}
+  .gal-m button{position:relative;border:0;padding:0;background:var(--bg-2);overflow:hidden}
+  .gal-m button:first-child{grid-row:1/3}
+  .gal-m img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease-out)}
+  .gal-m button:hover img{transform:scale(1.04)}
+  .gal-more{position:absolute;right:16px;bottom:16px;display:inline-flex;gap:8px;align-items:center;padding:0 16px;height:40px;border-radius:999px;background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:var(--ink);font-weight:500;font-size:14px}
+  .gal-s{display:none!important}
+}
+@media (min-width:1300px){.gal-m{grid-template-rows:290px 290px}}
+.gal-s{position:relative;margin-inline:calc(-1 * var(--gut))}
+.gal-s .slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;aspect-ratio:4/3;max-height:62vh}
+.gal-s .slides::-webkit-scrollbar{display:none}
+.gal-s button{flex:0 0 100%;border:0;padding:0;scroll-snap-align:start;background:var(--bg-2)}
+.gal-s img{width:100%;height:100%;object-fit:cover}
+.gal-count{position:absolute;right:16px;bottom:14px;padding:4px 12px;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
+.d-grid{display:grid;gap:40px;margin-top:28px}
+@media (min-width:1000px){.d-grid{grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:56px;margin-top:44px}}
+.d-main{display:grid;gap:48px;min-width:0}
+.d-head{display:grid;gap:12px}
+.d-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px}
+.d-price .price{font-size:32px}
+@media (min-width:900px){.d-price .price{font-size:40px}}
+.mort-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:0;background:var(--bg-2);font-size:15px;width:max-content;max-width:100%;color:var(--ink)}
+.mort-link:hover{background:color-mix(in srgb,var(--accent) 12%,var(--bg-2))}
+.mort-link .ico:last-child{color:var(--accent)}
+.kgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.kgrid>div{background:var(--bg-2);border-radius:var(--r-m);padding:16px;display:grid;gap:6px}
+.kgrid span{font-size:13px;color:var(--muted)}
+.kgrid b{font-size:17px;font-weight:600;font-variant-numeric:tabular-nums}
+@media (min-width:900px){.kgrid{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.desc p+p{margin-top:14px}
+.desc.clamp{max-height:9.6em;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent)}
+.spec{display:grid;gap:28px}
+@media (min-width:700px){.spec{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 40px}}
+.spec h4{font-size:15px;color:var(--muted);margin-bottom:6px;font-weight:600}
+.spec dl{margin:0;display:grid}
+.spec dl>div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.spec dt{color:var(--muted)}
+.spec dd{margin:0;font-weight:500;text-align:right}
+.near{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.near>div{display:flex;gap:12px;align-items:center;padding:14px;border-radius:var(--r-m);background:var(--bg-2)}
+.near .ti{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--surface);flex:none}
+.near b{display:block;font-size:15px;font-weight:600;line-height:1.3}
+.near span{font-size:13px;color:var(--muted)}
+.map{position:relative;border-radius:var(--r-l);overflow:hidden;aspect-ratio:16/9;background:var(--bg-2)}
+.map svg{width:100%;height:100%;display:block}
+.map .btn{position:absolute;right:12px;bottom:12px}
+.side{display:grid;gap:16px;align-content:start}
+@media (min-width:1000px){.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 96px)}}
+.cpanel{border-radius:var(--r-xl);padding:24px;background:var(--bg-2);display:grid;gap:12px}
+.ag{display:flex;gap:14px;align-items:center}
+.ag .av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#3a3a3c,#1d1d1f);color:#fff;display:grid;place-items:center;font-size:22px;font-weight:600;flex:none}
+.ag b{display:block;font-weight:600}
+.ag span{font-size:13px;color:var(--muted)}
+.phone-line{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:5px 5px 5px 16px;border-radius:999px;background:var(--surface);font-weight:600;font-variant-numeric:tabular-nums}
+.phone-line .btn{--bh:38px;padding:0 14px;border-color:transparent;background:var(--bg-2)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cpanel .btn-line{background:var(--surface);border-color:transparent}
+.ref{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:95;background:rgba(0,0,0,.94);display:grid;grid-template-rows:auto 1fr auto;color:#fff;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.lb.open{opacity:1;visibility:visible}
+.lb-top{display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 12px) var(--gut-r) 12px var(--gut)}
+.lb-top .ibtn,.lb-nav{background:rgba(255,255,255,.12);color:#fff;border:0}
+.lb-stage{position:relative;display:grid;place-items:center;min-height:0;padding:0 var(--gut-r) 0 var(--gut);touch-action:pan-y}
+.lb-stage img{max-height:100%;max-width:100%;object-fit:contain;border-radius:14px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;display:grid;place-items:center}
+.lb-prev{left:16px}.lb-next{right:16px}
+.lb-cap{text-align:center;padding:12px 16px calc(16px + env(safe-area-inset-bottom,0px));font-size:14px;color:rgba(255,255,255,.7);font-variant-numeric:tabular-nums}
+
+/* saved / compare */
+.cmp-wrap{overflow-x:auto;border-radius:var(--r-l);background:var(--bg-2)}
+.cmp{width:100%;border-collapse:collapse;min-width:560px;font-size:15px}
+.cmp th,.cmp td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.cmp th{color:var(--muted);font-weight:400;width:160px}
+.cmp td{font-weight:500;font-variant-numeric:tabular-nums}
+.cmp img{width:100%;max-width:200px;aspect-ratio:4/3;object-fit:cover;border-radius:14px;margin-bottom:8px}
+.cmp-pick{position:absolute;left:12px;bottom:12px;z-index:3}
+.cmp-pick label{display:inline-flex;gap:8px;align-items:center;height:36px;padding:0 12px;border-radius:999px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:13px;font-weight:500;cursor:pointer}
+.cmp-pick input{accent-color:var(--accent);width:18px;height:18px}
+
+/* sell */
+.sell{display:grid;gap:32px;padding-bottom:var(--sec)}
+@media (min-width:1000px){.sell{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start}}
+.sell-card{border-radius:var(--r-xl);background:var(--bg-2);padding:24px}
+@media (min-width:900px){.sell-card{padding:40px}}
+.prog{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:28px}
+.prog div{display:grid;gap:8px;font-size:13px;font-weight:500;color:var(--muted)}
+.prog i{height:4px;border-radius:9px;background:var(--line);overflow:hidden}
+.prog .on{color:var(--ink)}
+.prog .on i{background:var(--accent)}
+.row2{display:grid;gap:18px}
+@media (min-width:600px){.row2{grid-template-columns:1fr 1fr}}
+.form-nav{display:flex;justify-content:space-between;gap:12px;margin-top:8px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+  .rv-line>span{transform:none}
+  .hero .fade{opacity:1;transform:none}
+  .hero-bg{transform:none!important}
+}
+</style>
+</head>
+<body>
+<!-- === ICONS (Lucide-style, 1.5px) === -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-msg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.1 2 11.2c0 2.9 1.5 5.5 3.8 7.2V22l3.4-1.9c.9.3 1.8.4 2.8.4 5.5 0 10-4.1 10-9.2S17.5 2 12 2z"/><path d="m7 13 3-3 3 2 4-4"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.5-1.4 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.1 3 5.5l7 7z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></symbol>
+  <symbol id="i-bath" viewBox="0 0 24 24"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.7 3 4 3.7 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5M2 12h20M7 19v2M17 19v2"/></symbol>
+  <symbol id="i-area" viewBox="0 0 24 24"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0zM14.5 12.5l2-2M11.5 9.5l2-2M8.5 6.5l2-2M17.5 15.5l2-2"/></symbol>
+  <symbol id="i-floors" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></symbol>
+  <symbol id="i-cl" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-cr" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-cd" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17h6"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-2.1 6.4-6.4 2.1 2.1-6.4z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.7 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-percent" viewBox="0 0 24 24"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10 12 3l9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+  <symbol id="i-tower" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18zM6 12H4a2 2 0 0 0-2 2v8h4M18 9h2a2 2 0 0 1 2 2v11h-4M10 6h4M10 10h4M10 14h4M10 18h4"/></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><path d="M2 18h20M3.5 7.5 7 12l5-7 5 7 3.5-4.5L19 18H5z"/></symbol>
+  <symbol id="i-town" viewBox="0 0 24 24"><path d="M2 21V10l5-4 5 4v11M12 21V10l5-4 5 4v11M2 21h20M6 21v-4h2v4M16 21v-4h2v4"/></symbol>
+  <symbol id="i-house" viewBox="0 0 24 24"><path d="M2 12 12 4l10 8M5 10v11h14V10M10 21v-6h4v6"/><path d="M17 6V3h2v4.5"/></symbol>
+  <symbol id="i-crane" viewBox="0 0 24 24"><path d="M6 22V3l14 3M6 6h14M2 22h8M17 6v5M15 11h4v3h-4z"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  <symbol id="i-school" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+  <symbol id="i-baby" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 9h.01M15 9h.01M10 12c1 .7 3 .7 4 0M8 21c0-2 1.8-4 4-4s4 2 4 4"/></symbol>
+  <symbol id="i-plus-sq" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></symbol>
+  <symbol id="i-bus" viewBox="0 0 24 24"><path d="M8 6v6M16 6v6M2 12h20M7 18H5a2 2 0 0 1-2-2V6c0-2 2-3 4-3h10c2 0 4 1 4 3v10a2 2 0 0 1-2 2h-2"/><circle cx="8" cy="18" r="2"/><circle cx="16" cy="18" r="2"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3-3-9 9"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+  <symbol id="i-viber" viewBox="0 0 24 24"><path d="M12 2c5 0 9 2.5 9 8.5S17.5 19 12.5 19c-1 0-2-.1-2.8-.3L6 22v-4C3.8 16.4 3 14 3 10.5 3 4.5 7 2 12 2z"/><path d="M9.5 7.5c0 3 2 5.5 5 6l1-1.2-1.8-1-.8.7c-1-.4-1.8-1.3-2.2-2.2l.7-.8-1-1.8z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-sofa" viewBox="0 0 24 24"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0zM4 18v2M20 18v2"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".5"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Агуулга руу шилжих</a>
+
+<!-- === RAIL (desktop left nav) === -->
+<nav class="rail nav glass" aria-label="Үндсэн цэс">
+  <a class="rail-logo" href="#home" aria-label="Bair.mn нүүр хуудас">B<span>.</span></a>
+  <a class="ri" href="#home" data-nav="home" aria-label="Нүүр"><svg class="ico"><use href="#i-home"/></svg><span class="tip" aria-hidden="true">Нүүр</span></a>
+  <a class="ri" href="#buy" data-nav="buy" aria-label="Худалдах"><svg class="ico"><use href="#i-search"/></svg><span class="tip" aria-hidden="true">Худалдах</span></a>
+  <a class="ri" href="#rent" data-nav="rent" aria-label="Түрээслэх"><svg class="ico"><use href="#i-key"/></svg><span class="tip" aria-hidden="true">Түрээслэх</span></a>
+  <a class="ri" href="#home" data-scroll="locH" data-nav="loc" aria-label="Байршлууд"><svg class="ico"><use href="#i-pin"/></svg><span class="tip" aria-hidden="true">Байршлууд</span></a>
+  <a class="ri savebtn" href="#saved" data-nav="saved" aria-label="Хадгалсан"><svg class="ico"><use href="#i-heart"/></svg><span class="badge" data-saved-count hidden>0</span><span class="tip" aria-hidden="true">Хадгалсан</span></a>
+  <a class="ri" href="#calculator" data-nav="calculator" aria-label="Тооцоолуур"><svg class="ico"><use href="#i-percent"/></svg><span class="tip" aria-hidden="true">Тооцоолуур</span></a>
+  <a class="ri" href="#sell" data-nav="sell" aria-label="Байраа зарах"><svg class="ico"><use href="#i-tag"/></svg><span class="tip" aria-hidden="true">Байраа зарах</span></a>
+  <span class="sep" aria-hidden="true"></span>
+  <a class="ri" href="#agent" data-nav="agent" aria-label="Агент Бат-Амгалан"><span class="rail-av" aria-hidden="true">Б</span><span class="tip" aria-hidden="true">Агент · Бат-Амгалан</span></a>
+  <button class="ri" data-theme-cycle aria-label="Цайвар, бараан горим солих"><svg class="ico"><use href="#i-moon"/></svg><span class="tip" aria-hidden="true">Цайвар / бараан</span></button>
+</nav>
+<div class="tr glass">
+  <a class="tel" href="tel:" data-tel data-track="call_click"><svg class="ico sm"><use href="#i-phone"/></svg><span data-phone></span></a>
+  <button class="btn btn-gold btn-sm" data-viewing>Үзлэг товлох</button>
+</div>
+
+<!-- === MOBILE HEADER === -->
+<header class="hdr" id="hdr">
+  <div class="hdr-in glass">
+    <a class="logo" href="#home" aria-label="Bair.mn нүүр хуудас">Bair<span>.mn</span></a>
+    <div class="hdr-r">
+      <a class="ibtn savebtn" href="#saved" aria-label="Хадгалсан байрууд"><svg class="ico"><use href="#i-heart"/></svg><span class="badge" data-saved-count hidden>0</span></a>
+      <button class="ibtn menu-btn" id="menuBtn" aria-label="Цэс нээх" aria-expanded="false" aria-controls="mmenu"><svg class="ico"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Цэс">
+  <div class="mmenu-top">
+    <a class="logo" href="#home">Bair<span>.mn</span></a>
+    <button class="ibtn" data-close-menu aria-label="Цэс хаах"><svg class="ico"><use href="#i-x"/></svg></button>
+  </div>
+  <nav aria-label="Гар утасны цэс">
+    <a href="#buy">Худалдах <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="#rent">Түрээслэх <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="#sell">Байраа зарах <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="#calculator">Тооцоолуур <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="#agent">Агент <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="#saved">Хадгалсан <svg class="ico"><use href="#i-arrow"/></svg></a>
+  </nav>
+  <div class="mmenu-foot">
+    <div class="phone-line"><span data-phone></span><button class="btn btn-line" data-copy-phone><svg class="ico sm"><use href="#i-copy"/></svg>Хуулах</button></div>
+    <div class="two">
+      <a class="btn btn-gold" href="tel:" data-tel data-track="call_click"><svg class="ico"><use href="#i-phone"/></svg>Залгах</a>
+      <a class="btn btn-line" data-msgr target="_blank" rel="noopener" data-track="messenger_click"><svg class="ico"><use href="#i-msg"/></svg>Messenger</a>
+    </div>
+  </div>
+</div>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= HOME ================= -->
+<div class="view" data-view="home" id="v-home">
+  <section class="hero-wrap" aria-label="Нүүр">
+    <div class="hero" id="hero">
+      <img class="hero-bg" src="img/hero.webp" alt="" fetchpriority="high" width="2000" height="1500">
+      <div class="hero-shade"></div>
+      <form class="search search-desk glass fade" style="animation-delay:.45s" data-search aria-label="Байр хайх"></form>
+      <div class="hero-copy" id="heroCopy">
+        <p class="eyebrow fade" style="animation-delay:.05s">Улаанбаатар · Үл хөдлөх хөрөнгө</p>
+        <h1 class="display">
+          <span class="rv-line"><span style="animation-delay:.12s">Илүү гэрэлтэй амьдрал</span></span>
+          <span class="rv-line"><span style="animation-delay:.22s" class="ital">эндээс эхэлнэ.</span></span>
+        </h1>
+        <p class="hero-sub bodyL fade" style="animation-delay:.38s">Сонгосон, шалгасан байрууд. Агенттай шууд харилцана.</p>
+        <div class="hero-ctas fade" style="animation-delay:.48s">
+          <a class="btn btn-gold" href="#listings">Байрнуудыг үзэх</a>
+          <button class="btn btn-glass" data-viewing>Үзлэг товлох</button>
+        </div>
+      </div>
+      <a class="hcard hcard-l glass fade" style="animation-delay:.6s" href="#home" data-scroll="locH">
+        <span class="tx">
+          <span class="small muted" style="display:flex;gap:6px;align-items:center"><svg class="ico sm"><use href="#i-pin"/></svg>Байршлууд</span>
+          <b class="h3">Хотын шилдэг хорооллууд</b>
+          <span class="small muted">Зайсан, Хан-Уул, Яармаг, Хотын төв</span>
+          <span class="fg-row"><span class="small" style="font-weight:600">Үзэх</span><span class="arrow-dot"><svg class="ico sm"><use href="#i-arrow"/></svg></span></span>
+        </span>
+        <img src="img/ub12.webp" alt="" width="140" height="180">
+      </a>
+      <a class="hcard feat-glass glass fade" style="animation-delay:.7s" id="featGlass" href="#bair-001"></a>
+    </div>
+  </section>
+  <form class="search search-mobile glass" data-search aria-label="Байр хайх"></form>
+  <div class="mstrip" id="mstrip" aria-label="Онцлох байрууд"></div>
+
+  <div class="wrap">
+    <div class="trust rv">
+      <div><span class="ti"><svg class="ico"><use href="#i-key"/></svg></span><p><b>Зарсан байрууд</b><span>Бодит түүх, ил тод үнэ</span></p></div>
+      <div><span class="ti"><svg class="ico"><use href="#i-user"/></svg></span><p><b>Олон жилийн туршлага</b><span>Нэг агент, нэг хариуцлага</span></p></div>
+      <div><span class="ti"><svg class="ico"><use href="#i-percent"/></svg></span><p><b>Ипотекийн зөвлөгөө</b><span>6%-ийн зээлийн бичиг баримт</span></p></div>
+      <div><span class="ti"><svg class="ico"><use href="#i-file"/></svg></span><p><b>Хууль, гэрээний дэмжлэг</b><span>Гэрчилгээ шалгалтаас гэрээ хүртэл</span></p></div>
+    </div>
+  </div>
+
+  <!-- featured -->
+  <section class="sec" aria-labelledby="featH">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div><h2 class="h2" id="featH">Шинэ, онцлох байрууд. <span class="ital">Сонгосон, шалгасан.</span></h2></div>
+        <a class="link" href="#listings">Бүгдийг үзэх <svg class="ico sm"><use href="#i-right"/></svg></a>
+      </div>
+      <div class="hscroll" id="featGrid" aria-busy="true"></div>
+      <div class="gnav"><button class="ibtn" data-gal="-1" aria-label="Өмнөх байрууд"><svg class="ico"><use href="#i-cl"/></svg></button><button class="ibtn" data-gal="1" aria-label="Дараагийн байрууд"><svg class="ico"><use href="#i-cr"/></svg></button></div>
+    </div>
+  </section>
+
+  <!-- types -->
+  <section class="sec" aria-labelledby="typeH">
+    <div class="wrap">
+      <div class="sec-head rv"><div><h2 class="h2" id="typeH">Төрлөөр нь. <span class="ital">Ямар орон зай хайж байна вэ?</span></h2></div></div>
+      <div class="types" id="types"></div>
+    </div>
+  </section>
+
+  <!-- locations -->
+  <section class="sec" aria-labelledby="locH">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div><h2 class="h2" id="locH">Байршлууд. <span class="ital">Хотын аль хэсэгт амьдрах вэ?</span></h2></div>
+        <p class="muted measure" style="max-width:40ch">Дүүрэг бүр өөрийн хэмнэлтэй. Ажил, сургууль, амралтдаа ойр байршлаа сонгоорой.</p>
+      </div>
+      <div class="bento" id="bento"></div>
+    </div>
+  </section>
+
+  <!-- calculator -->
+  <section class="sec" aria-labelledby="calcH" id="calcSec">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <div><h2 class="h2" id="calcH">Ипотек. <span class="ital">Сард хэд төлөх вэ?</span></h2></div>
+        <p class="muted" style="max-width:40ch">6%-ийн ипотек болон арилжааны зээлийн нөхцөлөөр шууд тооцоолно.</p>
+      </div>
+      <div id="calcHomeSlot"></div>
+    </div>
+  </section>
+
+  <!-- why -->
+  <section class="sec" aria-labelledby="whyH">
+    <div class="wrap">
+      <div class="sec-head rv"><div><h2 class="h2" id="whyH">Яагаад Bair.mn гэж. <span class="ital">Цөөн зар, сайн танилцуулга, нэг хүнтэй харилцана.</span></h2></div></div>
+      <div class="why rv">
+        <div><svg class="ico ti"><use href="#i-shield"/></svg><h3 class="h3">Шалгасан мэдээлэл</h3><p>Зар бүрийн гэрчилгээ, мэдээллийг нийтлэхээс өмнө шалгана.</p></div>
+        <div><svg class="ico ti"><use href="#i-user"/></svg><h3 class="h3">Шууд агент</h3><p>Дамжуулагчгүй. Эхнээс нь дуустал нэг хүнтэй харилцана.</p></div>
+        <div><svg class="ico ti"><use href="#i-camera"/></svg><h3 class="h3">Мэргэжлийн танилцуулга</h3><p>Зураг, видео, нарийн мэдээлэлтэй тул алсаас ч сайн харна.</p></div>
+        <div><svg class="ico ti"><use href="#i-file"/></svg><h3 class="h3">Гэрээ хүртэл хамт</h3><p>Зээл, гэрээ, бичиг баримтын бүх алхамд дэмжлэг үзүүлнэ.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- agent -->
+  <section class="dark" style="margin-top:var(--sec)" id="agent" aria-labelledby="agentH">
+    <div class="wrap agent">
+      <div class="portrait rv" role="img" aria-label="Агент Бат-Амгалангийн хөрөг (удахгүй оруулна)">
+        <span class="mono" aria-hidden="true">Б</span>
+        <span class="cap"><svg class="ico sm"><use href="#i-image"/></svg>Хөрөг зураг: agent.jpg</span>
+      </div>
+      <div class="rv" style="display:grid;gap:20px">
+        <p class="eyebrow">Таны агент</p>
+        <h2 class="h1" id="agentH">Бат-Амгалан</h2>
+        <p class="bodyL muted measure">Дунд болон дээд зэрэглэлийн орон сууц зарж, түрээслүүлдэг Улаанбаатарын үл хөдлөх хөрөнгийн агент. <span class="ph">Танилцуулга, туршлага удахгүй нэмэгдэнэ</span></p>
+        <div>
+          <p class="small muted" style="margin-bottom:10px">Ажилладаг бүс</p>
+          <div class="chips"><span class="chip">Зайсан</span><span class="chip">Хан-Уул</span><span class="chip">Хотын төв</span><span class="chip">Яармаг</span><span class="chip">Баянзүрх</span><span class="chip">Нисэх</span></div>
+        </div>
+        <p class="small muted">Мэргэжлийн гишүүнчлэл: <span class="ph">мэдээлэл удахгүй</span></p>
+        <div class="contact-row">
+          <div class="phone-box"><svg class="ico sm"><use href="#i-phone"/></svg><span data-phone></span><button class="btn btn-dline" data-copy-phone>Хуулах</button></div>
+          <a class="btn btn-gold" href="tel:" data-tel data-track="call_click"><svg class="ico"><use href="#i-phone"/></svg>Залгах</a>
+        </div>
+        <div class="contact-row">
+          <a class="btn btn-dline btn-sm" data-msgr target="_blank" rel="noopener" data-track="messenger_click"><svg class="ico sm"><use href="#i-msg"/></svg>Messenger</a>
+          <a class="btn btn-dline btn-sm" data-viber target="_blank" rel="noopener" data-track="viber_click"><svg class="ico sm"><use href="#i-viber"/></svg>Viber</a>
+          <a class="btn btn-dline btn-sm" data-ig target="_blank" rel="noopener"><svg class="ico sm"><use href="#i-ig"/></svg>Instagram</a>
+          <a class="btn btn-dline btn-sm" data-fb target="_blank" rel="noopener"><svg class="ico sm"><use href="#i-fb"/></svg>Facebook</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- owners -->
+  <section class="sec" aria-labelledby="ownH">
+    <div class="wrap">
+      <div class="sec-head rv"><div><h2 class="h2" id="ownH">Эзэмшигчдэд. <span class="ital">Байраа зарах эсвэл түрээслүүлэх үү?</span></h2></div></div>
+      <div class="owners">
+        <div class="own own-a rv">
+          <div style="display:grid;gap:12px"><h3 class="h2">Байраа зарах уу?</h3><p class="muted measure">Зах зээлийн үнээр, санаа зоволтгүй зарахад тань тусална. Танихгүй хүмүүсийг гэрээр тань оруулахаас өмнө шүүнэ.</p></div>
+          <ol class="steps">
+            <li><p><b>Үнэлгээ</b><span>Ойролцоох гүйлгээгээр бодит үнэ тогтооно</span></p></li>
+            <li><p><b>Зураг, видео</b><span>Мэргэжлийн зураг авалт, танилцуулга бэлтгэнэ</span></p></li>
+            <li><p><b>Зар, сурталчилгаа</b><span>Bair.mn болон сошиал сувгуудаар тараана</span></p></li>
+            <li><p><b>Гэрээ</b><span>Бичиг баримт, гүйлгээг аюулгүй дуусгана</span></p></li>
+          </ol>
+          <a class="btn btn-ink" href="#sell" style="justify-self:start">Үнэгүй үнэлгээ авах <svg class="ico"><use href="#i-right"/></svg></a>
+        </div>
+        <div class="own own-b rv">
+          <img src="img/in34.webp" alt="" loading="lazy">
+          <div style="display:grid;gap:12px"><p class="eyebrow">Үйлчилгээ</p><h3 class="h2">Мэргэжлийн зураг, видео</h3><p style="color:rgba(255,255,255,.82)">Сайн зураг зарыг хурдан, илүү үнээр зардаг.</p></div>
+          <div class="pk">
+            <div><b>Фото</b><span>Интерьер, гадна тал</span></div>
+            <div><b>Фото + видео</b><span>Богино видео аялал</span></div>
+            <div><b>Бүрэн контент</b><span>Зураг, видео, зарын текст</span></div>
+          </div>
+          <button class="btn btn-glass" style="justify-self:start" data-viewing="service">Үйлчилгээтэй танилцах <svg class="ico"><use href="#i-arrow"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- testimonials: hidden until real reviews arrive -->
+  <section class="sec" id="reviews" hidden aria-label="Сэтгэгдэл"></section>
+
+  <!-- CTA -->
+  <section class="cta" aria-labelledby="ctaH">
+    <img src="img/ub8.webp" alt="" loading="lazy">
+    <div class="cta-in rv">
+      <p class="eyebrow" style="color:rgba(255,255,255,.75)">Bair.mn</p>
+      <h2 class="h1" id="ctaH" style="max-width:14ch">Мөрөөдлийн гэрээ <span class="ital">хамтдаа</span> олъё.</h2>
+      <div class="hero-ctas" style="margin:0">
+        <button class="btn btn-gold" data-viewing>Үзлэг товлох</button>
+        <a class="btn btn-glass" href="tel:" data-tel data-track="call_click"><svg class="ico"><use href="#i-phone"/></svg><span data-phone></span></a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= LISTINGS ================= -->
+<div class="view" data-view="listings" id="v-listings" hidden>
+  <div class="wrap page-head">
+    <p class="eyebrow">Бүх зар</p>
+    <h1 class="h1" id="listH">Байрнууд</h1>
+    <div class="fbar glass" role="group" aria-label="Шүүлтүүр" id="fbar"></div>
+    <div class="active-f" id="activeF"></div>
+    <p class="result-n" aria-live="polite" id="resultN"></p>
+    <div class="grid" id="listGrid"></div>
+    <div style="height:var(--sec)"></div>
+  </div>
+</div>
+
+<!-- ================= DETAIL ================= -->
+<div class="view" data-view="detail" id="v-detail" hidden></div>
+
+<!-- ================= SAVED ================= -->
+<div class="view" data-view="saved" id="v-saved" hidden>
+  <div class="wrap page-head" style="padding-bottom:var(--sec)">
+    <p class="eyebrow">Хадгалсан</p>
+    <h1 class="h1">Таны сонгосон байрууд</h1>
+    <p class="muted" style="margin-top:12px">Энэ хөтөч дээр хадгалагдана. 3 хүртэл байрыг сонгож харьцуулаарай.</p>
+    <div id="savedBody" style="margin-top:32px;display:grid;gap:40px"></div>
+  </div>
+</div>
+
+<!-- ================= SELL ================= -->
+<div class="view" data-view="sell" id="v-sell" hidden>
+  <div class="wrap page-head">
+    <div class="sell">
+      <div style="display:grid;gap:20px">
+        <p class="eyebrow">Байраа зарах</p>
+        <h1 class="h1">Үнэгүй үнэлгээ авах</h1>
+        <p class="bodyL muted">3 богино алхам. 1 минут орчим. Таны байрны талаар 24 цагийн дотор холбогдоно.</p>
+        <ol class="steps" style="margin-top:8px">
+          <li><p><b>Үнэлгээ</b><span>Ойролцоох гүйлгээгээр бодит үнэ</span></p></li>
+          <li><p><b>Зураг, видео</b><span>Мэргэжлийн танилцуулга</span></p></li>
+          <li><p><b>Зар, сурталчилгаа</b><span>Зөв худалдан авагчид хүргэнэ</span></p></li>
+          <li><p><b>Гэрээ</b><span>Аюулгүй, ил тод гүйлгээ</span></p></li>
+        </ol>
+        <p class="small muted">Урт маягт бөглөх дургүй юу? Шууд залгаарай: <b data-phone></b></p>
+      </div>
+      <div class="sell-card" id="sellCard"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CALCULATOR ================= -->
+<div class="view" data-view="calculator" id="v-calculator" hidden>
+  <div class="wrap page-head" style="padding-bottom:var(--sec)">
+    <p class="eyebrow">Ипотекийн тооцоолуур</p>
+    <h1 class="h1" style="margin-bottom:32px">Сард хэд төлөх вэ?</h1>
+    <div id="calcPageSlot"></div>
+  </div>
+</div>
+
+<!-- the single calculator component; moved between slots -->
+<div class="calc rv" id="calc" hidden>
+  <div class="calc-in">
+    <div class="field">
+      <label for="cPrice">Байрны үнэ</label>
+      <div class="inp-suffix"><input class="inp" id="cPrice" inputmode="numeric" autocomplete="off" value="300,000,000"><i>₮</i></div>
+    </div>
+    <div class="field">
+      <div class="range-row"><label for="cDown" class="flabel">Урьдчилгаа</label><b id="cDownOut">30% · 90 сая ₮</b></div>
+      <input type="range" class="range" id="cDown" min="30" max="70" step="5" value="30" aria-describedby="cDownOut">
+    </div>
+    <div class="field">
+      <div class="range-row"><label for="cRate" class="flabel">Жилийн хүү</label><b id="cRateOut">6%</b></div>
+      <div class="chips" role="radiogroup" aria-label="Зээлийн төрөл" id="cRateChips">
+        <button type="button" class="chip" role="radio" aria-checked="true" data-rate="6">6% ипотек</button>
+        <button type="button" class="chip" role="radio" aria-checked="false" data-rate="17">Арилжааны 16–18%</button>
+      </div>
+      <input type="range" class="range" id="cRate" min="3" max="24" step="0.5" value="6" aria-label="Жилийн хүү, хувь">
+    </div>
+    <div class="field">
+      <span class="flabel" id="cTermL">Хугацаа</span>
+      <div class="chips" role="radiogroup" aria-labelledby="cTermL" id="cTerm">
+        <button type="button" class="chip" role="radio" aria-checked="false" data-y="10">10 жил</button>
+        <button type="button" class="chip" role="radio" aria-checked="false" data-y="15">15</button>
+        <button type="button" class="chip" role="radio" aria-checked="true" data-y="20">20</button>
+        <button type="button" class="chip" role="radio" aria-checked="false" data-y="25">25</button>
+        <button type="button" class="chip" role="radio" aria-checked="false" data-y="30">30</button>
+      </div>
+    </div>
+  </div>
+  <div class="calc-out" aria-live="polite">
+    <p class="eyebrow" id="calcFor">Сарын төлбөр</p>
+    <div class="big-pay" id="cPay">1,504,500 ₮</div>
+    <dl class="kv" style="margin:0">
+      <div><dt>Зээлийн дүн</dt><dd id="cLoan"></dd></div>
+      <div><dt>Нийт хүү</dt><dd id="cInt"></dd></div>
+      <div><dt>Нийт төлөх дүн</dt><dd id="cTotal"></dd></div>
+    </dl>
+    <div style="display:grid;gap:10px">
+      <div class="ratio" aria-hidden="true"><i class="p" id="cBarP"></i><i class="r" id="cBarR"></i></div>
+      <div class="legend"><span><i style="background:var(--accent)"></i>Үндсэн төлбөр</span><span><i style="background:color-mix(in srgb,var(--ink) 25%,var(--bg-2))"></i>Хүү</span></div>
+    </div>
+    <p class="note">Ойролцоо тооцоо. Эцсийн хүү, нөхцөлийг банк тогтооно.</p>
+    <div style="display:grid;gap:8px">
+      <button class="btn btn-gold btn-block" id="calcAsk" data-viewing="loan">Зээлийн талаар зөвлөгөө авах</button>
+      <a class="btn btn-line btn-block" id="calcBack" hidden>Энэ байрны талаар асуух</a>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- === FOOTER === -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div style="display:grid;gap:12px;align-content:start;margin-bottom:16px">
+        <a class="logo" href="#home" style="font-size:28px">Bair<span>.mn</span></a>
+        <p class="muted" style="max-width:32ch">Байр биш, дараагийн амьдралаа сонго.</p>
+      </div>
+      <details open><summary>Зарууд <svg class="ico"><use href="#i-cd"/></svg></summary>
+        <ul><li><a href="#buy">Худалдах</a></li><li><a href="#rent">Түрээслэх</a></li><li><a href="#home" data-scroll="locH">Байршлууд</a></li><li><a href="#saved">Хадгалсан</a></li></ul></details>
+      <details open><summary>Үйлчилгээ <svg class="ico"><use href="#i-cd"/></svg></summary>
+        <ul><li><a href="#sell">Байраа зарах</a></li><li><a href="#calculator">Ипотекийн тооцоолуур</a></li><li><a href="#home" data-scroll="ownH">Зураг, видео үйлчилгээ</a></li></ul></details>
+      <details open><summary>Холбоо барих <svg class="ico"><use href="#i-cd"/></svg></summary>
+        <ul><li>Утас: <b style="margin-left:6px;color:var(--ink)" data-phone></b></li><li>Имэйл: <span class="ph" style="margin-left:6px">имэйл</span></li><li>Да–Ба 09:00–19:00</li><li>Улаанбаатар хот</li></ul></details>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Bair.mn · <a href="#home" style="color:inherit">Нууцлалын бодлого</a></span>
+      <div class="theme-sw" role="group" aria-label="Өнгөний горим">
+        <button data-theme-set="light" aria-pressed="false">Цайвар</button>
+        <button data-theme-set="system" aria-pressed="true">Систем</button>
+        <button data-theme-set="dark" aria-pressed="false">Бараан</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- mobile bottom bar -->
+<div class="bbar glass" id="bbar"></div>
+
+<!-- overlays -->
+<div class="overlay" id="overlay"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetT"></div>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Зургийн цомог">
+  <div class="lb-top"><span id="lbTitle" class="small"></span><button class="ibtn" data-lb-close aria-label="Хаах"><svg class="ico"><use href="#i-x"/></svg></button></div>
+  <div class="lb-stage" id="lbStage">
+    <img id="lbImg" alt="">
+    <button class="lb-nav lb-prev" data-lb="-1" aria-label="Өмнөх зураг"><svg class="ico"><use href="#i-cl"/></svg></button>
+    <button class="lb-nav lb-next" data-lb="1" aria-label="Дараагийн зураг"><svg class="ico"><use href="#i-cr"/></svg></button>
+  </div>
+  <div class="lb-cap" id="lbCap" aria-live="polite"></div>
+</div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+/* =========================================================
+   === CONFIG === (бодит мэдээллээр солих)
+   ========================================================= */
+const CONFIG = {
+  phone: "",            // [УТАС] жишээ: "99112233"
+  messenger: "",        // [ТАТАХ] https://m.me/...
+  viber: "",            // [ТАТАХ] viber://chat?number=976...
+  instagram: "",        // [ТАТАХ]
+  facebook: "",         // [ТАТАХ]
+  leadEndpoint: ""      // Formspree URL эсвэл Telegram bot proxy
+};
+
+/* === DATA === */
+/* Зургууд: Unsplash (үнэгүй лиценз). Бодит зарын зургаар солигдоно. */
+const LOCIMG = {zaisan:"ub12",yarmag:"ub9",tov:"ub11",khanuul:"ub15",bayanzurkh:"ub13",nisekh:"ub10"};
+const DISTRICTS = {
+  zaisan:{name:"Зайсан",line:"Богд уулын бэл, нам гүм",dist:"Хан-Уул дүүрэг"},
+  yarmag:{name:"Яармаг",line:"Шинэ хороолол, нисэх онгоцны буудал руу ойрхон",dist:"Хан-Уул дүүрэг"},
+  tov:{name:"Хотын төв",line:"Бүх зүйл алхах зайд",dist:"Сүхбаатар дүүрэг"},
+  khanuul:{name:"Хан-Уул",line:"Гэр бүлд ээлтэй, сургууль ихтэй",dist:"Хан-Уул дүүрэг"},
+  bayanzurkh:{name:"Баянзүрх",line:"Үнэ боломжийн, хурдан хөгжиж буй",dist:"Баянзүрх дүүрэг"},
+  nisekh:{name:"Нисэх / Шинэ Хан-Уул",line:"Шинэ төслүүд",dist:"Хан-Уул дүүрэг"}
+};
+const KINDS = {
+  apartment:{name:"Орон сууц",icon:"i-tower"},
+  penthouse:{name:"Пентхаус",icon:"i-crown"},
+  townhouse:{name:"Таунхаус",icon:"i-town"},
+  house:{name:"Амины орон сууц",icon:"i-house"},
+  newbuild:{name:"Шинэ барилга",icon:"i-crane"},
+  office:{name:"Оффис / Арилжаа",icon:"i-brief"}
+};
+const NEAR = {
+  zaisan:[["i-school","Олон улсын сургууль",8],["i-baby","Цэцэрлэг",5],["i-plus-sq","Эмнэлэг",12],["i-bag","Худалдааны төв",7],["i-bus","Автобусны буудал",4]],
+  yarmag:[["i-school","Ерөнхий боловсролын сургууль",6],["i-baby","Цэцэрлэг",4],["i-plus-sq","Өрхийн эмнэлэг",9],["i-bag","Супермаркет",5],["i-bus","Автобусны буудал",3]],
+  tov:[["i-school","Сургууль",7],["i-baby","Цэцэрлэг",6],["i-plus-sq","Эмнэлэг",10],["i-bag","Их дэлгүүр",6],["i-bus","Автобусны буудал",2]],
+  khanuul:[["i-school","Сургууль",5],["i-baby","Цэцэрлэг",3],["i-plus-sq","Эмнэлэг",11],["i-bag","Худалдааны төв",8],["i-bus","Автобусны буудал",3]],
+  bayanzurkh:[["i-school","Сургууль",6],["i-baby","Цэцэрлэг",4],["i-plus-sq","Эмнэлэг",9],["i-bag","Супермаркет",4],["i-bus","Автобусны буудал",2]],
+  nisekh:[["i-school","Сургууль",10],["i-baby","Цэцэрлэг",6],["i-plus-sq","Эмнэлэг",14],["i-bag","Худалдааны төв",12],["i-bus","Автобусны буудал",6]]
+};
+const MLN = 1e6;
+/* Жишээ зар · Бодит зараар солигдоно */
+const LISTINGS = [
+ {id:"bair-001",deal:"sale",kind:"apartment",newBuild:true,d:"zaisan",title:"Богд уулын харагдацтай 3 өрөө, Зайсан",price:918*MLN,area:112,rooms:3,baths:2,floor:12,floors:18,year:2022,parking:"Газар доор, 1 машин",storage:"Тийм",facing:"Урд, баруун",tags:["feat","new"],imgs:["in18","in26","in31","ub12","in37"],
+  company:"Жишээ Констракшн ХХК",elevator:"2 зорчигч, 1 ачааны",security:"24/7 харуул, камер",sokh:"3,000 ₮/м²",balcony:"2, битүү",reno:"Шинэ, дизайнер засвартай",furniture:"Гал тогоо иж бүрэн",cert:"Тийм",mortgage:"Тийм",barter:"Үгүй",
+  desc:["Зайсангийн нам гүм хэсэгт, 12 давхарт байрлах 3 өрөө байр. Зочны өрөөний том цонхоор Богд уул бүтэн харагдана.","Гал тогоо, зочны өрөө нь нэгдмэл зохион байгуулалттай. 2 унтлагын өрөө тус бүр хувцасны шүүгээтэй, мастер өрөө нь тусдаа угаалгын өрөөтэй.","Барилга 2022 онд ашиглалтад орсон. Газар доорх зогсоол, агуулахтай. Ипотекийн зээлд хамрагдана."],updated:"2026.10.28"},
+ {id:"bair-002",deal:"sale",kind:"apartment",newBuild:true,d:"yarmag",title:"Шинэ хороололд 2 өрөө, гэрэлтэй",price:275*MLN,area:64,rooms:2,baths:1,floor:6,floors:16,year:2024,parking:"Газар дээр",storage:"Үгүй",facing:"Зүүн",tags:["new"],imgs:["in24","in29","in30","ub9","in22"],
+  company:"Жишээ Девелопмент ХХК",elevator:"2 зорчигч",security:"Камер, кодтой орц",sokh:"2,000 ₮/м²",balcony:"1",reno:"Шинэ, энгийн засвар",furniture:"Үгүй",cert:"Тийм",mortgage:"Тийм",barter:"Машин тохиролцоно",
+  desc:["Яармагийн шинэ хороололд 2024 онд ашиглалтад орсон байрны 6 давхарт. Өглөөний нар орж ирдэг зүүн зүгийн цонхтой.","Анхны гэрээ авах залуу гэр бүлд тохиромжтой. Сургууль, цэцэрлэг алхах зайд, нисэх онгоцны буудал руу 15 минут."],updated:"2026.10.26"},
+ {id:"bair-003",deal:"sale",kind:"apartment",newBuild:false,d:"khanuul",title:"Хан-Уулд гэр бүлд тохиромжтой 3 өрөө",price:430*MLN,oldPrice:455*MLN,area:86,rooms:3,baths:1,floor:8,floors:16,year:2018,parking:"Газар доор",storage:"Тийм",facing:"Урд",tags:["drop"],imgs:["in22","in27","in32","ub15","in21"],
+  company:"Жишээ Барилга ХХК",elevator:"2 зорчигч",security:"Харуул, камер",sokh:"2,200 ₮/м²",balcony:"1, битүү",reno:"Сайн, 2023 онд шинэчилсэн",furniture:"Хэсэгчлэн",cert:"Тийм",mortgage:"Тийм",barter:"Үгүй",
+  desc:["Хан-Уул дүүргийн гэр бүлд ээлтэй хороололд, 8 давхарт. Урд зүгийн цонхтой тул өдөржин гэрэлтэй.","Хүүхдийн тоглоомын талбай, сургууль, цэцэрлэг ойрхон. 2023 онд гал тогоо, угаалгын өрөөг шинэчилсэн.","Эзэмшигч хурдан зарахаар үнээ 25 сая төгрөгөөр бууруулсан."],updated:"2026.10.28"},
+ {id:"bair-004",deal:"sale",kind:"apartment",newBuild:false,d:"tov",title:"Хотын төвд 4 өрөө, өндөр таазтай",price:1020*MLN,area:138,rooms:4,baths:2,floor:5,floors:12,year:2016,parking:"Газар доор, 2 машин",storage:"Тийм",facing:"Урд, зүүн",tags:[],status:"sold",imgs:["in35","in28","in31","ub11","in17"],
+  company:"Жишээ Пропертис ХХК",elevator:"2 зорчигч",security:"24/7 харуул",sokh:"3,500 ₮/м²",balcony:"2",reno:"Дизайнер засвартай",furniture:"Бүрэн",cert:"Тийм",mortgage:"Тийм",barter:"Үгүй",
+  desc:["Хотын төвд, Сүхбаатарын талбайгаас алхах зайд байрлах 4 өрөө байр.","Энэ байр зарагдсан. Ижил төстэй байр хайж байвал хүсэлтээ үлдээгээрэй."],updated:"2026.10.12"},
+ {id:"bair-005",deal:"sale",kind:"penthouse",newBuild:true,d:"zaisan",title:"Зайсангийн пентхаус, дээвэр дээрх терастай",price:1850*MLN,area:248,rooms:5,baths:3,floor:20,floors:20,year:2023,parking:"Газар доор, 2 машин",storage:"Тийм",facing:"Бүх зүг",tags:["feat"],imgs:["in34","in33","in25","in37","ub12"],
+  company:"Жишээ Премиум ХХК",elevator:"Хувийн лифт",security:"24/7 харуул, хаалганы үйлчилгээ",sokh:"4,500 ₮/м²",balcony:"Тераса 60 м²",reno:"Тансаг засвартай",furniture:"Бүрэн, итали",cert:"Тийм",mortgage:"Үгүй",barter:"Тохиролцоно",
+  desc:["Барилгын хамгийн дээд давхрыг бүтнээр нь эзэлсэн 248 м² пентхаус. 60 м² хувийн терас нь хот, Богд уулыг бүх зүгээс харуулна.","5 унтлагын өрөө, 3 угаалгын өрөө, тусдаа ажлын өрөө. Хувийн лифтээр шууд орно.","Барилга 2023 онд ашиглалтад орсон, 24 цагийн харуул, хаалганы үйлчилгээтэй."],updated:"2026.10.25"},
+ {id:"bair-006",deal:"sale",kind:"apartment",newBuild:false,d:"bayanzurkh",title:"Баянзүрхэд боломжийн үнэтэй 2 өрөө",price:224*MLN,area:59,rooms:2,baths:1,floor:4,floors:12,year:2015,parking:"Газар дээр",storage:"Үгүй",facing:"Баруун",tags:[],imgs:["in21","in29","in30","ub13","in23"],
+  company:"Жишээ Хаус ХХК",elevator:"1 зорчигч",security:"Кодтой орц",sokh:"1,500 ₮/м²",balcony:"1",reno:"Энгийн",furniture:"Үгүй",cert:"Тийм",mortgage:"Тийм",barter:"Үгүй",
+  desc:["Баянзүрх дүүргийн хурдан хөгжиж буй хэсэгт, 4 давхарт байрлах 2 өрөө.","Үнэ боломжийн, автобусны буудал, супермаркет ойрхон. Ипотекийн зээлд хамрагдана."],updated:"2026.10.20"},
+ {id:"bair-007",deal:"sale",kind:"townhouse",newBuild:true,d:"nisekh",title:"Шинэ Хан-Уулд 2 давхар таунхаус",price:780*MLN,area:196,rooms:4,baths:3,floor:1,floors:2,year:2024,parking:"Хувийн гараж",storage:"Тийм",facing:"Урд",tags:["new"],imgs:["h38","in23","in19","in26","h3"],
+  company:"Жишээ Таун ХХК",elevator:"Үгүй",security:"Хашаатай хотхон, харуул",sokh:"150,000 ₮/сар",balcony:"Арын хашаа",reno:"Шинэ",furniture:"Гал тогоо",cert:"Тийм",mortgage:"Тийм",barter:"Үгүй",
+  desc:["Нисэх орчмын шинэ хотхонд 2 давхар, хувийн хашаатай таунхаус.","4 унтлагын өрөө, хувийн гараж. Хүүхэдтэй гэр бүлд хотын чимээнээс хол, гэхдээ хот руу 25 минут."],updated:"2026.10.22"},
+ {id:"bair-008",deal:"sale",kind:"house",newBuild:false,d:"zaisan",title:"Зайсанд модон дотортой амины орон сууц",price:1450*MLN,area:290,rooms:5,baths:3,floor:1,floors:2,year:2019,parking:"2 машины гараж",storage:"Тийм",facing:"Урд",tags:[],imgs:["h0","in19","in20","in27","h2"],
+  company:"Хувийн",elevator:"Үгүй",security:"Камер",sokh:"Үгүй",balcony:"Тагт, хашаа 6 сотых",reno:"Сайн",furniture:"Хэсэгчлэн",cert:"Тийм",mortgage:"Тийм",barter:"Тохиролцоно",
+  desc:["Зайсангийн дээд хэсэгт, 6 сотых газартай 2 давхар амины орон сууц.","Модон бүрээстэй зочны өрөө, задгай гал тогоо, 2 машины гараж."],updated:"2026.10.18"},
+ {id:"bair-009",deal:"rent",kind:"apartment",newBuild:false,d:"tov",title:"Хотын төвд тавилгатай 2 өрөө",price:3.5*MLN,area:72,rooms:2,baths:1,floor:9,floors:14,year:2017,parking:"Газар доор",storage:"Үгүй",facing:"Хойд, зүүн",tags:["rent"],imgs:["in20","in28","in32","ub11","in36"],
+  company:"Жишээ Сити ХХК",elevator:"2 зорчигч",security:"24/7 харуул",sokh:"Үнэд орсон",balcony:"1",reno:"Сайн",furniture:"Бүрэн",cert:"Тийм",mortgage:"—",barter:"—",
+  deposit:"1 сарын түрээс",advance:"2 сар",incl:"СӨХ, интернэт",minTerm:"6 сар",
+  desc:["Хотын төвд, бүрэн тавилгатай 2 өрөө. Ажилдаа алхаж очих хүнд тохиромжтой.","Гадаад түрээслэгч хүлээн авна. СӨХ, интернэт түрээсэд багтсан."],updated:"2026.10.27"},
+ {id:"bair-010",deal:"rent",kind:"apartment",newBuild:true,d:"zaisan",title:"Зайсанд 3 өрөө, уулын харагдацтай",price:6.5*MLN,area:120,rooms:3,baths:2,floor:14,floors:18,year:2023,parking:"Газар доор, 1 машин",storage:"Тийм",facing:"Урд",tags:["rent","new"],imgs:["in25","in26","in31","in37","ub12"],
+  company:"Жишээ Премиум ХХК",elevator:"2 зорчигч",security:"24/7 харуул",sokh:"Үнэд орсон",balcony:"2",reno:"Шинэ",furniture:"Бүрэн",cert:"Тийм",mortgage:"—",barter:"—",
+  deposit:"1 сарын түрээс",advance:"3 сар",incl:"СӨХ, дулаан",minTerm:"12 сар",
+  desc:["Зайсанд 2023 онд ашиглалтад орсон барилгын 14 давхарт, бүрэн тавилгатай 3 өрөө.","Олон улсын сургууль ойрхон, гадаад гэр бүлд тохиромжтой."],updated:"2026.10.29"},
+ {id:"bair-011",deal:"rent",kind:"apartment",newBuild:true,d:"yarmag",title:"Яармагт 1 өрөө студи",price:1.6*MLN,area:42,rooms:1,baths:1,floor:3,floors:12,year:2024,parking:"Газар дээр",storage:"Үгүй",facing:"Баруун",tags:["rent"],imgs:["in36","in29","in30","ub9","in24"],
+  company:"Жишээ Девелопмент ХХК",elevator:"1 зорчигч",security:"Кодтой орц",sokh:"Тусдаа",balcony:"1",reno:"Шинэ",furniture:"Бүрэн",cert:"Тийм",mortgage:"—",barter:"—",
+  deposit:"1 сарын түрээс",advance:"1 сар",incl:"Интернэт",minTerm:"6 сар",
+  desc:["Яармагт шинэ барилгын 1 өрөө студи. Нэг хүн эсвэл хосод тохиромжтой.","Бүрэн тавилгатай, шууд орж амьдарна."],updated:"2026.10.24"},
+ {id:"bair-012",deal:"rent",kind:"office",newBuild:false,d:"tov",title:"Хотын төвд 160 м² оффис",price:8*MLN,area:160,rooms:4,baths:2,floor:3,floors:10,year:2014,parking:"Газар доор, 3 машин",storage:"Тийм",facing:"Урд",tags:["rent"],imgs:["in33","in17","in35","ub11","in18"],
+  company:"Жишээ Бизнес Төв",elevator:"2 зорчигч",security:"24/7 харуул",sokh:"Үнэд орсон",balcony:"Үгүй",reno:"Оффисын засвартай",furniture:"Хэсэгчлэн",cert:"Тийм",mortgage:"—",barter:"—",
+  deposit:"2 сарын түрээс",advance:"3 сар",incl:"СӨХ, дулаан, цэвэрлэгээ",minTerm:"12 сар",
+  desc:["Хотын төвийн бизнес төвд 160 м² оффис. 3 хувийн өрөө, нээлттэй ажлын талбай, хурлын өрөөтэй.","Газар доорх 3 машины зогсоол багтана."],updated:"2026.10.21"}
+];
+/* Хожим Google Sheets / JSON API-аас уншихад зөвхөн энэ функцийг өөрчилнө */
+function loadListings(){ return new Promise(res => setTimeout(() => res(LISTINGS), 450)); }
+
+/* === UTIL === */
+const $ = (s,r=document) => r.querySelector(s);
+const $$ = (s,r=document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ico = (id,c="") => `<svg class="ico ${c}" aria-hidden="true"><use href="#${id}"/></svg>`;
+const fmt = n => Math.round(n).toLocaleString("en-US");
+function money(v){ // 918000000 -> "918 сая ₮", 1.85e9 -> "1.85 тэрбум ₮"
+  if (v >= 1e9) return `${(+(v/1e9).toFixed(2)).toString()} тэрбум ₮`;
+  if (v >= 1e6) return `${(+(v/1e6).toFixed(1)).toString()} сая ₮`;
+  return fmt(v)+" ₮";
+}
+function moneySpoken(v){ return money(v).replace("₮","төгрөг"); }
+const img = k => `img/${LOCIMG[k]||k}.webp`;
+const store = {
+  get(k,d){ try{ const v = localStorage.getItem("bair:"+k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k,v){ try{ localStorage.setItem("bair:"+k, JSON.stringify(v)); return true; }catch(e){ return false; } }
+};
+/* === ANALYTICS === GA4 / Meta Pixel холбоход бэлэн */
+function track(event, props={}){
+  try{
+    (window.dataLayer = window.dataLayer || []).push({event, ...props});
+    if (window.gtag) window.gtag("event", event, props);
+    if (window.fbq) window.fbq("trackCustom", event, props);
+  }catch(e){}
+}
+/* === LEADS === Formspree / Telegram-д холбоход бэлэн нэг функц */
+async function submitLead(data){
+  track(data.kind === "sell" ? "sell_submit" : "viewing_submit", {listing:data.listing||""});
+  if (!CONFIG.leadEndpoint){ await new Promise(r=>setTimeout(r,900)); return {ok:true}; }
+  const r = await fetch(CONFIG.leadEndpoint,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(data)});
+  if (!r.ok) throw new Error("send");
+  return {ok:true};
+}
+function phoneText(){ return CONFIG.phone ? CONFIG.phone.replace(/(\d{4})(\d{4})/,"$1 $2") : "[УТАС]"; }
+
+/* === STATE === */
+let DATA = [];
+let saved = store.get("saved", []);
+let compareSel = [];
+const filters = {deal:"all",d:"",rooms:"",price:"",kind:"",sort:"new",areaMin:"",areaMax:"",age:"",parking:false,mortgage:false};
+const seen = store.get("seenPrice", {}); // price-drop tracking for returning users
+
+/* === TOAST === */
+function toast(msg,type="ok",action){
+  const t = document.createElement("div");
+  t.className = "toast "+type;
+  t.innerHTML = `${ico(type==="bad"?"i-alert":type==="info"?"i-info":"i-check")}<span>${esc(msg)}</span>`;
+  if (action){ const b=document.createElement("button"); b.textContent=action.label; b.onclick=()=>{action.fn(); t.remove();}; t.appendChild(b); }
+  $("#toasts").appendChild(t);
+  setTimeout(()=>t.remove(), 3200);
+}
+
+/* === SAVED === */
+function isSaved(id){ return saved.includes(id); }
+function toggleSave(id, btn){
+  const was = isSaved(id);
+  saved = was ? saved.filter(x=>x!==id) : [...saved, id];
+  if (!store.set("saved", saved)) toast("Энэ хөтөч хадгалах боломжгүй байна. Нууц горимоос гарч үзнэ үү.","bad");
+  if (!was){ const l = DATA.find(x=>x.id===id); if(l){ seen[id]=l.price; store.set("seenPrice",seen);} track("favorite_add",{listing:id}); }
+  syncHearts();
+  if (btn){ btn.classList.remove("pop"); void btn.offsetWidth; btn.classList.add("pop"); }
+  if (was) toast("Хасагдлаа","info",{label:"Буцаах",fn:()=>toggleSave(id)});
+  else toast("Хадгаллаа");
+  if (currentView==="saved") renderSaved();
+}
+function syncHearts(){
+  $$("[data-heart]").forEach(b=>{
+    const on = isSaved(b.dataset.heart);
+    b.setAttribute("aria-pressed", on);
+    b.setAttribute("aria-label", on ? "Хадгалснаас хасах" : "Хадгалах");
+  });
+  $$("[data-saved-count]").forEach(el=>{ el.textContent = saved.length; el.hidden = !saved.length; });
+}
+
+/* === RENDER: cards === */
+function specLine(l){
+  const r = l.kind==="office" ? `${ico("i-grid","sm")} ${l.rooms} өрөө` : `${ico("i-bed","sm")} ${l.rooms} өрөө`;
+  return `<span>${r}</span><span>${ico("i-area","sm")} ${l.area} м²</span><span>${ico("i-floors","sm")} ${l.floor}/${l.floors} давхар</span>`;
+}
+function monthly(P, ratePct=6, years=20, downPct=30){
+  const loan = P*(1-downPct/100), r = ratePct/100/12, n = years*12;
+  const m = r ? loan*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1) : loan/n;
+  return {m, loan, total:m*n, interest:m*n-loan};
+}
+const TAGS = {new:["new","Шинэ"],feat:["feat","Онцлох"],rent:["rent","Түрээс"],drop:["drop","Үнэ буурсан"]};
+function tagsHtml(l){
+  const t = [...l.tags];
+  if (seen[l.id] && l.price < seen[l.id] && !t.includes("drop")) t.push("drop");
+  return t.map(k=>`<span class="tag ${TAGS[k][0]}">${TAGS[k][1]}</span>`).join("");
+}
+function priceHtml(l){
+  if (l.deal==="rent") return `<span class="price">${money(l.price)}<span class="small muted" style="font-weight:600"> /сар</span></span>`;
+  return `<span class="price">${money(l.price)}${l.oldPrice?`<span class="old">${money(l.oldPrice)}</span>`:""}</span>`;
+}
+function cardHtml(l){
+  const sold = l.status==="sold";
+  const pics = l.imgs.slice(0,4);
+  const alt = `${DISTRICTS[l.d].name}, ${l.rooms} өрөө байр`;
+  return `<article class="card${sold?" sold":""}" data-id="${l.id}" ${sold?'aria-disabled="true"':""}>
+    <div class="card-media">
+      <div class="card-tags">${sold?"":tagsHtml(l)}</div>
+      ${sold?"":`<button class="heart" data-heart="${l.id}" aria-pressed="false" aria-label="Хадгалах">${ico("i-heart")}</button>`}
+      <div class="slides">${pics.map((p,i)=>`<img src="${img(p)}" alt="${i===0?esc(alt):""}" loading="lazy" decoding="async" width="960" height="720">`).join("")}</div>
+      ${sold?"":`<button class="cm-nav cm-prev" data-cm="-1" aria-label="Өмнөх зураг" tabindex="-1">${ico("i-cl","sm")}</button><button class="cm-nav cm-next" data-cm="1" aria-label="Дараагийн зураг" tabindex="-1">${ico("i-cr","sm")}</button>`}
+      <div class="dots">${pics.map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("")}</div>
+      ${sold?`<div class="sold-ov"><span>Зарагдсан</span></div>`:""}
+    </div>
+    <div class="card-body">
+      <p class="card-loc">${ico("i-pin","sm")} ${DISTRICTS[l.d].name} · ${DISTRICTS[l.d].dist}</p>
+      ${sold?`<h3 class="card-title">${esc(l.title)}</h3>`:`<h3><a class="card-title" href="#${l.id}">${esc(l.title)}</a></h3>`}
+      <p class="specs">${specLine(l)}</p>
+      <div class="card-price">
+        <span style="display:grid;gap:4px">${priceHtml(l)}<span class="card-mort">${l.deal==="sale"?`${(l.price/l.area/MLN).toFixed(1)} сая ₮/м²`:`${KINDS[l.kind].name}`}</span></span>
+        ${l.deal==="sale"&&!sold?`<span class="card-mort num">Сард ≈ ${money(monthly(l.price).m).replace(" ₮","")}-өөс</span>`:""}
+      </div>
+    </div>
+  </article>`;
+}
+function skeletons(n){
+  return Array.from({length:n},()=>`<div class="card" aria-hidden="true" style="cursor:default"><div class="card-media sk" style="border-radius:0"></div><div class="card-body"><div class="sk" style="height:14px;width:50%"></div><div class="sk" style="height:20px;width:85%"></div><div class="sk" style="height:14px;width:70%"></div><div class="sk" style="height:26px;width:40%;margin-top:10px"></div></div></div>`).join("");
+}
+function bindCards(root){
+  $$(".card[data-id]", root).forEach(c=>{
+    if (c.classList.contains("sold")) return;
+    c.addEventListener("click", e=>{
+      if (e.target.closest("button,a")) return;
+      location.hash = c.dataset.id;
+    });
+    const sl = $(".slides", c), dots = $$(".dots i", c);
+    sl.addEventListener("scroll", ()=>{ const i = Math.round(sl.scrollLeft/sl.clientWidth); dots.forEach((d,j)=>d.classList.toggle("on", i===j)); }, {passive:true});
+  });
+  $$("img", root).forEach(imgErr);
+}
+function imgErr(im){
+  im.addEventListener("error", ()=>{
+    const d = document.createElement("div"); d.className = "img-err"; d.style.cssText = "width:100%;height:100%;flex:0 0 100%";
+    d.innerHTML = `${ico("i-image")}<span>Зураг ачаалагдсангүй</span>`; im.replaceWith(d);
+  }, {once:true});
+}
+document.addEventListener("click", e=>{
+  const h = e.target.closest("[data-heart]");
+  if (h){ e.preventDefault(); e.stopPropagation(); toggleSave(h.dataset.heart, h); return; }
+  const n = e.target.closest("[data-cm]");
+  if (n){ e.stopPropagation(); const sl = $(".slides", n.closest(".card-media")); sl.scrollBy({left: sl.clientWidth * +n.dataset.cm, behavior:"smooth"}); }
+});
+
+/* === RENDER: search panel (hero) === */
+function searchHtml(uid){
+  return `<div class="seg" role="radiogroup" aria-label="Гүйлгээний төрөл">
+      <button type="button" role="radio" aria-checked="true" data-sdeal="sale">Худалдах</button>
+      <button type="button" role="radio" aria-checked="false" data-sdeal="rent">Түрээслэх</button>
+    </div>
+    <div class="search-row">
+      <div class="field"><label for="sLoc${uid}">Байршил</label><select class="sel" id="sLoc${uid}" name="d"><option value="">Бүх байршил</option>${Object.entries(DISTRICTS).map(([k,v])=>`<option value="${k}">${v.name}</option>`).join("")}</select></div>
+      <div class="field rooms-f"><span class="flabel" id="sRoomL${uid}">Өрөө</span><div class="room-chips" role="group" aria-labelledby="sRoomL${uid}">${["1","2","3","4"].map(r=>`<button type="button" class="chip" aria-pressed="false" data-sroom="${r}">${r==="4"?"4+":r}</button>`).join("")}</div></div>
+      <div class="field"><label for="sPrice${uid}">Үнэ</label><select class="sel" id="sPrice${uid}" name="price">${priceOptions("sale")}</select></div>
+      <button class="btn btn-gold" type="submit" aria-label="Хайх">${ico("i-search")}<span class="lbl">Хайх</span></button>
+    </div>`;
+}
+const PRICE_RANGES = {
+  sale:[["","Бүх үнэ"],["s1","300 сая хүртэл",0,300],["s2","300–600 сая",300,600],["s3","600 сая – 1 тэрбум",600,1000],["s4","1 тэрбумаас дээш",1000,1e9]],
+  rent:[["","Бүх үнэ"],["r1","2 сая хүртэл",0,2],["r2","2–4 сая",2,4],["r3","4 саяас дээш",4,1e9]]
+};
+function priceOptions(deal, sel=""){
+  const groups = deal==="all" ? [["Худалдах",PRICE_RANGES.sale.slice(1)],["Түрээс (сард)",PRICE_RANGES.rent.slice(1)]] : null;
+  if (groups) return `<option value="">Бүх үнэ</option>`+groups.map(([g,a])=>`<optgroup label="${g}">${a.map(o=>`<option value="${o[0]}" ${o[0]===sel?"selected":""}>${o[1]}</option>`).join("")}</optgroup>`).join("");
+  return PRICE_RANGES[deal].map(o=>`<option value="${o[0]}" ${o[0]===sel?"selected":""}>${o[1]}</option>`).join("");
+}
+function initSearch(){
+  $$("[data-search]").forEach((f,i)=>{
+    f.innerHTML = searchHtml(i);
+    let deal = "sale", room = "";
+    f.addEventListener("click", e=>{
+      const d = e.target.closest("[data-sdeal]");
+      if (d){ deal = d.dataset.sdeal; $$("[data-sdeal]",f).forEach(b=>b.setAttribute("aria-checked", b===d)); $(`[name=price]`,f).innerHTML = priceOptions(deal); }
+      const r = e.target.closest("[data-sroom]");
+      if (r){ room = room===r.dataset.sroom ? "" : r.dataset.sroom; $$("[data-sroom]",f).forEach(b=>b.setAttribute("aria-pressed", b.dataset.sroom===room)); }
+    });
+    f.addEventListener("submit", e=>{
+      e.preventDefault();
+      Object.assign(filters,{deal,d:$(`[name=d]`,f).value,rooms:room,price:$(`[name=price]`,f).value,kind:""});
+      track("search_submit",{deal,d:filters.d,rooms:room,price:filters.price});
+      go("listings");
+    });
+  });
+}
+
+/* === RENDER: home === */
+function renderHome(){
+  const feat = DATA.filter(l=>l.status!=="sold").slice(0,6);
+  $("#featGrid").innerHTML = feat.map(cardHtml).join("");
+  $("#featGrid").setAttribute("aria-busy","false");
+  bindCards($("#featGrid"));
+  const f = DATA[0];
+  $("#featGlass").innerHTML = `<img src="${img(f.imgs[0])}" alt="${esc(f.title)}" width="960" height="720">
+    <div class="fg-b"><div class="fg-row"><span class="tag feat">Онцлох</span><span class="small muted">${DISTRICTS[f.d].name}</span></div>
+    <b style="font-size:17px;line-height:1.3">${esc(f.title)}</b>
+    <p class="specs" style="font-size:13px">${specLine(f)}</p>
+    <div class="fg-row"><span class="price" style="font-size:24px;color:var(--gold-ink)">${money(f.price)}</span><span class="arrow-dot">${ico("i-arrow")}</span></div></div>`;
+  $("#featGlass").href = "#"+f.id;
+  $("#featGlass").setAttribute("aria-label", `Онцлох байр: ${f.title}, ${moneySpoken(f.price)}`);
+  // mobile strip: 3 compact cards
+  $("#mstrip").innerHTML = feat.slice(0,4).map(l=>`<a href="#${l.id}" class="glass" style="flex:0 0 78%;scroll-snap-align:start;display:flex;gap:12px;align-items:center;padding:10px;border-radius:20px;text-decoration:none;background:var(--surface);border-color:var(--line)">
+    <img src="${img(l.imgs[0])}" alt="" style="width:84px;height:84px;border-radius:14px;object-fit:cover" loading="lazy">
+    <span style="display:grid;gap:4px;min-width:0"><span class="small muted">${DISTRICTS[l.d].name} · ${l.rooms} өрөө · ${l.area} м²</span><b style="font-size:15px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(l.title)}</b><span class="price" style="font-size:18px;color:var(--gold-ink)">${money(l.price)}${l.deal==="rent"?" /сар":""}</span></span></a>`).join("");
+  // types
+  $("#types").innerHTML = Object.entries(KINDS).map(([k,v])=>{
+    const n = DATA.filter(l=> (k==="newbuild" ? l.newBuild : l.kind===k) && l.status!=="sold").length;
+    return `<button class="type" data-kind="${k}"><span class="ti">${ico(v.icon,"lg")}</span><span><b>${v.name}</b><span>${n} зар</span></span></button>`;
+  }).join("");
+  // locations
+  const order = ["zaisan","yarmag","tov","khanuul","bayanzurkh","nisekh"];
+  $("#bento").innerHTML = order.map((k,i)=>{
+    const n = DATA.filter(l=>l.d===k && l.status!=="sold").length;
+    return `<button class="loc ${i===0?"big":""} ${i>=3?"":""}" data-loc="${k}" aria-label="${DISTRICTS[k].name}: ${n} зар"><img src="${img(k)}" alt="" loading="lazy"><span class="loc-n">${n} зар</span><span class="loc-in"><b>${DISTRICTS[k].name}</b><span>${DISTRICTS[k].line}</span></span></button>`;
+  }).join("");
+}
+document.addEventListener("click", e=>{
+  const t = e.target.closest("[data-kind]");
+  if (t){ Object.assign(filters,{deal:"all",kind:t.dataset.kind,d:"",rooms:"",price:""}); track("filter_change",{kind:t.dataset.kind}); go("listings"); }
+  const l = e.target.closest("[data-loc]");
+  if (l){ Object.assign(filters,{deal:"all",d:l.dataset.loc,kind:"",rooms:"",price:""}); track("filter_change",{d:l.dataset.loc}); go("listings"); }
+});
+
+/* === RENDER: listings / filters === */
+function renderFilterBar(){
+  const fb = $("#fbar");
+  fb.innerHTML = `<div class="seg" role="radiogroup" aria-label="Гүйлгээ">
+      ${[["all","Бүгд"],["sale","Худалдах"],["rent","Түрээслэх"]].map(([v,t])=>`<button type="button" role="radio" aria-checked="${filters.deal===v}" data-fdeal="${v}">${t}</button>`).join("")}
+    </div>
+    <label class="sr" for="fD">Байршил</label><select class="sel" id="fD" data-f="d"><option value="">Байршил</option>${Object.entries(DISTRICTS).map(([k,v])=>`<option value="${k}" ${filters.d===k?"selected":""}>${v.name}</option>`).join("")}</select>
+    <div class="room-chips" role="group" aria-label="Өрөөний тоо">${["1","2","3","4"].map(r=>`<button type="button" class="chip" aria-pressed="${filters.rooms===r}" data-froom="${r}">${r==="4"?"4+":r}<span class="sr"> өрөө</span></button>`).join("")}</div>
+    <label class="sr" for="fP">Үнэ</label><select class="sel" id="fP" data-f="price">${priceOptions(filters.deal, filters.price).replace('>Бүх үнэ<','>Үнэ<')}</select>
+    <label class="sr" for="fK">Төрөл</label><select class="sel" id="fK" data-f="kind"><option value="">Төрөл</option>${Object.entries(KINDS).map(([k,v])=>`<option value="${k}" ${filters.kind===k?"selected":""}>${v.name}</option>`).join("")}</select>
+    <button type="button" class="chip" id="moreF">${ico("i-sliders","sm")}Бусад шүүлтүүр</button>
+    <span class="grow"></span>
+    <label class="sr" for="fS">Эрэмбэлэх</label><select class="sel" id="fS" data-f="sort">
+      ${[["new","Шинэ эхэндээ"],["pa","Үнэ: багаас их"],["pd","Үнэ: ихээс бага"],["area","Талбай: ихээс бага"]].map(([v,t])=>`<option value="${v}" ${filters.sort===v?"selected":""}>${t}</option>`).join("")}
+    </select>`;
+}
+function priceMatch(l){
+  if (!filters.price) return true;
+  const all = [...PRICE_RANGES.sale,...PRICE_RANGES.rent].find(o=>o[0]===filters.price);
+  if (!all) return true;
+  const isRentRange = filters.price.startsWith("r");
+  if ((isRentRange && l.deal!=="rent") || (!isRentRange && l.deal!=="sale")) return false;
+  const v = l.price/MLN; return v>=all[2] && v<all[3];
+}
+function applyFilters(){
+  let r = DATA.filter(l=>
+    (filters.deal==="all" || l.deal===filters.deal) &&
+    (!filters.d || l.d===filters.d) &&
+    (!filters.rooms || (filters.rooms==="4" ? l.rooms>=4 : l.rooms===+filters.rooms)) &&
+    priceMatch(l) &&
+    (!filters.kind || (filters.kind==="newbuild" ? l.newBuild : l.kind===filters.kind)) &&
+    (!filters.areaMin || l.area>=+filters.areaMin) && (!filters.areaMax || l.area<=+filters.areaMax) &&
+    (!filters.age || (filters.age==="new" ? l.newBuild : !l.newBuild)) &&
+    (!filters.parking || /доор|гараж/i.test(l.parking)) &&
+    (!filters.mortgage || l.mortgage==="Тийм"));
+  const s = filters.sort;
+  r.sort((a,b)=> s==="pa"?a.price-b.price : s==="pd"?b.price-a.price : s==="area"?b.area-a.area : (a.status==="sold")-(b.status==="sold") || b.updated.localeCompare(a.updated));
+  return r;
+}
+function activeChips(){
+  const out = [];
+  if (filters.deal!=="all") out.push(["deal", filters.deal==="sale"?"Худалдах":"Түрээслэх"]);
+  if (filters.d) out.push(["d", DISTRICTS[filters.d].name]);
+  if (filters.rooms) out.push(["rooms", (filters.rooms==="4"?"4+":filters.rooms)+" өрөө"]);
+  if (filters.price){ const o=[...PRICE_RANGES.sale,...PRICE_RANGES.rent].find(x=>x[0]===filters.price); if(o) out.push(["price",o[1]]); }
+  if (filters.kind) out.push(["kind", KINDS[filters.kind].name]);
+  if (filters.areaMin||filters.areaMax) out.push(["area", `${filters.areaMin||0}–${filters.areaMax||"∞"} м²`]);
+  if (filters.age) out.push(["age", filters.age==="new"?"Шинэ барилга":"Хуучин барилга"]);
+  if (filters.parking) out.push(["parking","Зогсоолтой"]);
+  if (filters.mortgage) out.push(["mortgage","Ипотекд хамрагдана"]);
+  return out;
+}
+function renderListings(){
+  renderFilterBar();
+  if (!DATA.length){ $("#resultN").textContent = "Ачаалж байна…"; return; }
+  const r = applyFilters();
+  const ch = activeChips();
+  $("#activeF").innerHTML = ch.length ? ch.map(([k,t])=>`<button class="chip" data-rm="${k}" aria-label="${esc(t)} шүүлтүүрийг арилгах">${esc(t)} ${ico("i-x","sm")}</button>`).join("")+`<button class="btn btn-ghost btn-sm" data-clear>Бүгдийг арилгах</button>` : "";
+  $("#resultN").innerHTML = `<b>${r.length}</b> байр олдлоо`;
+  $("#listH").textContent = filters.deal==="sale"?"Худалдах байрууд":filters.deal==="rent"?"Түрээсийн байрууд":"Бүх байрууд";
+  if (!r.length){
+    $("#listGrid").innerHTML = `<div class="empty" style="grid-column:1/-1"><span class="ti">${ico("i-search","lg")}</span><h3 class="h3">Тохирох байр олдсонгүй.</h3><p>Шүүлтүүрээ багасгаж үзнэ үү, эсвэл бидэнд хүсэлтээ үлдээгээрэй. Тохирох байр гарвал бид эхэлж мэдэгдэнэ.</p><div class="chips" style="justify-content:center"><button class="btn btn-line" data-clear>Шүүлтүүр арилгах</button><button class="btn btn-ink" data-viewing="request">Хүсэлт үлдээх</button></div></div>`;
+  } else {
+    $("#listGrid").innerHTML = r.map(cardHtml).join("");
+    bindCards($("#listGrid"));
+  }
+  syncHearts();
+}
+const resetFilters = () => Object.assign(filters,{deal:"all",d:"",rooms:"",price:"",kind:"",areaMin:"",areaMax:"",age:"",parking:false,mortgage:false});
+$("#v-listings").addEventListener("click", e=>{
+  const d = e.target.closest("[data-fdeal]");
+  if (d){ filters.deal = d.dataset.fdeal; if (filters.price && ((filters.deal==="sale"&&filters.price[0]==="r")||(filters.deal==="rent"&&filters.price[0]==="s"))) filters.price=""; track("filter_change",{deal:filters.deal}); renderListings(); }
+  const r = e.target.closest("[data-froom]");
+  if (r){ filters.rooms = filters.rooms===r.dataset.froom ? "" : r.dataset.froom; track("filter_change",{rooms:filters.rooms}); renderListings(); }
+  const rm = e.target.closest("[data-rm]");
+  if (rm){ const k = rm.dataset.rm; if (k==="area"){filters.areaMin=filters.areaMax="";} else if (k==="deal"){filters.deal="all";} else filters[k] = typeof filters[k]==="boolean" ? false : ""; renderListings(); }
+  if (e.target.closest("[data-clear]")){ resetFilters(); renderListings(); }
+  if (e.target.closest("#moreF")) openMoreFilters(e.target.closest("#moreF"));
+});
+$("#v-listings").addEventListener("change", e=>{
+  const s = e.target.closest("[data-f]");
+  if (!s) return;
+  filters[s.dataset.f] = s.value;
+  if (s.dataset.f==="price" && s.value && filters.deal==="all") filters.deal = s.value[0]==="r" ? "rent" : "sale";
+  track("filter_change",{[s.dataset.f]:s.value});
+  renderListings();
+});
+
+/* === MODAL / SHEET core (focus trap, scroll lock) === */
+let lastFocus = null, sheetOnClose = null;
+function openSheet(html, {drawer=false, label="sheetT", onClose}={}){
+  lastFocus = document.activeElement;
+  const s = $("#sheet");
+  s.className = "sheet"+(drawer?" drawer":"");
+  s.setAttribute("aria-labelledby", label);
+  s.innerHTML = `<div class="grab" aria-hidden="true"></div>`+html;
+  requestAnimationFrame(()=>{ s.classList.add("open"); $("#overlay").classList.add("open"); });
+  document.documentElement.style.overflow = "hidden";
+  sheetOnClose = onClose || null;
+  setTimeout(()=>{ const f = $("input,select,textarea,button:not([data-close])", s) || s; f.focus({preventScroll:true}); }, 60);
+}
+function closeSheet(){
+  const s = $("#sheet");
+  if (!s.classList.contains("open")) return;
+  s.classList.remove("open"); $("#overlay").classList.remove("open");
+  document.documentElement.style.overflow = "";
+  if (sheetOnClose) sheetOnClose();
+  if (lastFocus && lastFocus.focus) lastFocus.focus({preventScroll:true});
+}
+$("#overlay").addEventListener("click", closeSheet);
+$("#sheet").addEventListener("click", e=>{ if (e.target.closest("[data-close]")) closeSheet(); });
+function trap(e, root){
+  if (e.key!=="Tab") return;
+  const f = $$('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])', root).filter(x=>x.offsetParent!==null);
+  if (!f.length) return;
+  const first = f[0], last = f[f.length-1];
+  if (e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+}
+document.addEventListener("keydown", e=>{
+  if ($("#lb").classList.contains("open")){
+    if (e.key==="Escape") closeLB(); else if (e.key==="ArrowRight") stepLB(1); else if (e.key==="ArrowLeft") stepLB(-1); else trap(e, $("#lb"));
+    return;
+  }
+  if ($("#sheet").classList.contains("open")){ if (e.key==="Escape") closeSheet(); else trap(e, $("#sheet")); return; }
+  if ($("#mmenu").classList.contains("open")){ if (e.key==="Escape") closeMenu(); else trap(e, $("#mmenu")); }
+});
+
+/* more filters drawer */
+function openMoreFilters(){
+  openSheet(`<div class="sheet-h"><h2 class="h3" id="sheetT">Бусад шүүлтүүр</h2><button class="ibtn" data-close aria-label="Хаах">${ico("i-x")}</button></div>
+  <form class="form" id="moreForm">
+    <div class="row2" style="grid-template-columns:1fr 1fr">
+      <div class="field"><label for="mfMin">Талбай (доод), м²</label><input class="inp" id="mfMin" inputmode="numeric" value="${filters.areaMin}"></div>
+      <div class="field"><label for="mfMax">Талбай (дээд), м²</label><input class="inp" id="mfMax" inputmode="numeric" value="${filters.areaMax}"></div>
+    </div>
+    <div class="field"><span class="flabel" id="mfAgeL">Барилга</span><div class="chips" role="radiogroup" aria-labelledby="mfAgeL">
+      ${[["","Бүгд"],["new","Шинэ"],["old","Хуучин"]].map(([v,t])=>`<button type="button" class="chip" role="radio" aria-checked="${filters.age===v}" data-age="${v}">${t}</button>`).join("")}</div></div>
+    <label class="check-row"><input type="checkbox" id="mfPark" ${filters.parking?"checked":""}> Зогсоолтой (газар доор / гараж)</label>
+    <label class="check-row"><input type="checkbox" id="mfMort" ${filters.mortgage?"checked":""}> Ипотекд хамрагдах</label>
+    <div class="two"><button type="button" class="btn btn-line" id="mfReset">Арилгах</button><button class="btn btn-ink">Үр дүнг харах</button></div>
+  </form>`, {drawer: innerWidth>=700});
+  let age = filters.age;
+  $("#moreForm").addEventListener("click", e=>{ const a=e.target.closest("[data-age]"); if(a){ age=a.dataset.age; $$("[data-age]").forEach(b=>b.setAttribute("aria-checked", b===a)); } });
+  $("#mfReset").onclick = ()=>{ Object.assign(filters,{areaMin:"",areaMax:"",age:"",parking:false,mortgage:false}); closeSheet(); renderListings(); };
+  $("#moreForm").addEventListener("submit", e=>{
+    e.preventDefault();
+    Object.assign(filters,{areaMin:$("#mfMin").value.replace(/\D/g,""),areaMax:$("#mfMax").value.replace(/\D/g,""),age,parking:$("#mfPark").checked,mortgage:$("#mfMort").checked});
+    track("filter_change",{more:true}); closeSheet(); renderListings();
+  });
+}
+
+/* === FORMS: validation helpers === */
+function fieldErr(input, msg){
+  const id = input.id+"Err"; let el = document.getElementById(id);
+  if (!el){ el = document.createElement("p"); el.className="err"; el.id=id; (input.closest(".field")||input.parentNode).appendChild(el); }
+  if (msg){ el.innerHTML = `${ico("i-alert","sm")}${esc(msg)}`; el.hidden=false; input.setAttribute("aria-invalid","true"); input.setAttribute("aria-describedby", id); }
+  else { el.hidden=true; input.removeAttribute("aria-invalid"); }
+  return !msg;
+}
+const vName = i => fieldErr(i, i.value.trim() ? "" : "Нэрээ оруулна уу.");
+const vPhone = i => fieldErr(i, /^\d{8}$/.test(i.value.replace(/\D/g,"")) ? "" : "Утасны дугаар 8 оронтой байна. Жишээ нь 9911 2233.");
+function phoneInput(i){
+  i.addEventListener("input", ()=>{ const d=i.value.replace(/\D/g,"").replace(/^976/,"").slice(0,8); i.value = d.length>4 ? d.slice(0,4)+" "+d.slice(4) : d; if (i.getAttribute("aria-invalid")) vPhone(i); });
+  i.addEventListener("blur", ()=>{ if (i.value) vPhone(i); });
+}
+function setLoading(btn, on, text){
+  if (on){ btn.dataset.label = btn.innerHTML; btn.disabled = true; btn.innerHTML = `<span class="spin" aria-hidden="true"></span>${text||"Илгээж байна…"}`; }
+  else { btn.disabled = false; btn.innerHTML = btn.dataset.label; }
+}
+const sendFailMsg = () => `Илгээж чадсангүй. Интернэтээ шалгаад дахин оролдоно уу, эсвэл ${phoneText()} руу шууд залгана уу.`;
+
+/* === VIEWING (Үзлэг товлох) === */
+const MN_DAYS = ["Ня","Да","Мя","Лх","Пү","Ба","Бя"];
+function openViewing(listingId, mode){
+  const l = DATA.find(x=>x.id===listingId);
+  const days = Array.from({length:14},(_,i)=>{ const d=new Date(); d.setDate(d.getDate()+i); return d; });
+  const title = mode==="loan" ? "Зээлийн зөвлөгөө авах" : mode==="service" ? "Зураг, видео үйлчилгээ" : mode==="request" ? "Хүсэлт үлдээх" : "Үзлэг товлох";
+  const isViewing = !mode;
+  openSheet(`<div class="sheet-h"><h2 class="h3" id="sheetT">${title}</h2><button class="ibtn" data-close aria-label="Хаах">${ico("i-x")}</button></div>
+  <form class="form" id="vForm" novalidate>
+    ${l?`<div class="prefill"><img src="${img(l.imgs[0])}" alt=""><span><b>${esc(l.title)}</b><span>${l.id.toUpperCase()} · ${money(l.price)}${l.deal==="rent"?" /сар":""}</span></span></div>`:""}
+    ${isViewing?`<div class="field"><span class="flabel" id="vDateL">Огноо</span><div class="date-chips" role="radiogroup" aria-labelledby="vDateL">
+      ${days.map((d,i)=>`<button type="button" class="chip" role="radio" aria-checked="${i===1}" data-date="${d.toISOString().slice(0,10)}">${i===0?"Өнөөдөр":i===1?"Маргааш":MN_DAYS[d.getDay()]}<small>${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}</small></button>`).join("")}</div></div>
+    <div class="field"><span class="flabel" id="vTimeL">Цаг</span><div class="chips" role="radiogroup" aria-labelledby="vTimeL">
+      ${["Өглөө 10–12","Өдөр 12–16","Орой 16–19"].map((t,i)=>`<button type="button" class="chip" role="radio" aria-checked="${i===1}" data-time="${t}">${t}</button>`).join("")}</div></div>`:""}
+    <div class="field"><label for="vName">Нэр *</label><input class="inp" id="vName" autocomplete="name" required></div>
+    <div class="field"><label for="vPhone">Утас *</label><div class="tel-wrap"><span>+976</span><input class="inp" id="vPhone" inputmode="tel" autocomplete="tel-national" placeholder="9911 2233" required></div></div>
+    <div class="field"><label for="vNote">Тайлбар <span class="muted" style="font-weight:500">(заавал биш)</span></label><textarea class="inp" id="vNote" rows="3"></textarea></div>
+    <button class="btn btn-gold btn-block" type="submit">${isViewing?"Үзлэг товлох":"Илгээх"}</button>
+  </form>`);
+  const f = $("#vForm"), n = $("#vName"), p = $("#vPhone");
+  phoneInput(p); n.addEventListener("blur", ()=>{ if (n.getAttribute("aria-invalid")||n.value) vName(n); });
+  f.addEventListener("click", e=>{
+    const c = e.target.closest("[data-date],[data-time]"); if (!c) return;
+    const k = c.hasAttribute("data-date") ? "[data-date]" : "[data-time]";
+    $$(k,f).forEach(b=>b.setAttribute("aria-checked", b===c));
+  });
+  f.addEventListener("submit", async e=>{
+    e.preventDefault();
+    const ok1 = vName(n), ok2 = vPhone(p);
+    if (!ok1 || !ok2){ (ok1?p:n).focus(); return; }
+    const btn = $("button[type=submit]", f); setLoading(btn, true);
+    try{
+      await submitLead({kind:mode||"viewing", listing:l?l.id:"", date:$("[data-date][aria-checked=true]",f)?.dataset.date, time:$("[data-time][aria-checked=true]",f)?.dataset.time, name:n.value.trim(), phone:"+976"+p.value.replace(/\D/g,""), note:$("#vNote").value});
+      $("#sheet").querySelector(".form").outerHTML = `<div class="success" tabindex="-1" id="vOk"><span class="ti">${ico("i-check","lg")}</span><h3 class="h2">Хүсэлт хүлээн авлаа!</h3><p class="muted measure">Бат-Амгалан тантай ажлын 1 цагийн дотор холбогдож цагийг баталгаажуулна.</p><button class="btn btn-ink" data-close>Хаах</button></div>`;
+      $("#vOk").focus();
+    }catch(err){ setLoading(btn,false); toast(sendFailMsg(),"bad"); }
+  });
+}
+document.addEventListener("click", e=>{
+  const v = e.target.closest("[data-viewing]");
+  if (!v) return;
+  const mode = v.dataset.viewing || "";
+  openViewing(currentView==="detail" && !mode ? currentListing : (v.dataset.listing||""), mode);
+});
+
+/* === SELL (3 алхам) === */
+let sellStep = 1;
+const sellDraft = Object.assign({kind:"apartment",d:"",rooms:"",area:"",price:"",needValuation:false,when:"",name:"",phone:"",callTime:""}, store.get("sellDraft",{}));
+function saveDraft(){ store.set("sellDraft", sellDraft); }
+function renderSell(){
+  const s = sellStep;
+  const step = (i,t)=>`<div class="${i<=s?"on":""}"><i></i>${i}. ${t}</div>`;
+  let body = "";
+  if (s===1) body = `
+    <div class="field"><span class="flabel" id="skL">Байрны төрөл</span><div class="chips" role="radiogroup" aria-labelledby="skL">
+      ${[["apartment","Орон сууц"],["penthouse","Пентхаус"],["townhouse","Таунхаус"],["house","Амины орон сууц"],["office","Оффис"]].map(([v,t])=>`<button type="button" class="chip" role="radio" aria-checked="${sellDraft.kind===v}" data-sk="${v}">${t}</button>`).join("")}</div></div>
+    <div class="field"><label for="slD">Байршил</label><select class="sel" id="slD"><option value="">Сонгох</option>${Object.entries(DISTRICTS).map(([k,v])=>`<option value="${k}" ${sellDraft.d===k?"selected":""}>${v.name}</option>`).join("")}</select></div>
+    <div class="row2">
+      <div class="field"><label for="slR">Өрөө</label><select class="sel" id="slR"><option value="">Сонгох</option>${["1","2","3","4","5+"].map(r=>`<option ${sellDraft.rooms===r?"selected":""}>${r}</option>`).join("")}</select></div>
+      <div class="field"><label for="slA">Талбай, м²</label><input class="inp" id="slA" inputmode="numeric" value="${esc(sellDraft.area)}"></div>
+    </div>`;
+  if (s===2) body = `
+    <div class="field"><label for="slP">Хүссэн үнэ, ₮ <span class="muted" style="font-weight:500">(заавал биш)</span></label><input class="inp" id="slP" inputmode="numeric" value="${esc(sellDraft.price)}" placeholder="жишээ нь 450,000,000"></div>
+    <label class="check-row"><input type="checkbox" id="slV" ${sellDraft.needValuation?"checked":""}> Үнэлгээ хэрэгтэй</label>
+    <div class="field"><span class="flabel" id="swL">Хэзээ зарах вэ?</span><div class="chips" role="radiogroup" aria-labelledby="swL">
+      ${["Яаралтай","1–3 сар","Зүгээр сонирхож байна"].map(v=>`<button type="button" class="chip" role="radio" aria-checked="${sellDraft.when===v}" data-sw="${v}">${v}</button>`).join("")}</div></div>`;
+  if (s===3) body = `
+    <div class="field"><label for="slN">Нэр *</label><input class="inp" id="slN" autocomplete="name" value="${esc(sellDraft.name)}"></div>
+    <div class="field"><label for="slPh">Утас *</label><div class="tel-wrap"><span>+976</span><input class="inp" id="slPh" inputmode="tel" autocomplete="tel-national" value="${esc(sellDraft.phone)}" placeholder="9911 2233"></div></div>
+    <div class="field"><span class="flabel" id="sctL">Холбогдох цаг</span><div class="chips" role="radiogroup" aria-labelledby="sctL">
+      ${["Өглөө","Өдөр","Орой","Хамаагүй"].map(v=>`<button type="button" class="chip" role="radio" aria-checked="${sellDraft.callTime===v}" data-sct="${v}">${v}</button>`).join("")}</div></div>`;
+  $("#sellCard").innerHTML = `<div class="prog" aria-label="Алхам ${s} / 3">${step(1,"Байр")}${step(2,"Үнэ, хугацаа")}${step(3,"Холбоо барих")}</div>
+    <form class="form" id="sellForm" novalidate><h2 class="h3" tabindex="-1" id="sellH">${["","Байрныхаа тухай","Үнэ, хугацаа","Тантай хэрхэн холбогдох вэ?"][s]}</h2>${body}
+    <div class="form-nav">${s>1?`<button type="button" class="btn btn-line" id="sellBack">${ico("i-left","sm")}Буцах</button>`:"<span></span>"}<button class="btn ${s===3?"btn-gold":"btn-ink"}" type="submit">${s===3?"Илгээх":"Үргэлжлүүлэх"}${s<3?ico("i-right","sm"):""}</button></div>
+    <p class="small muted">Ноорог энэ хөтөч дээр автоматаар хадгалагдана.</p></form>`;
+  const f = $("#sellForm");
+  f.addEventListener("click", e=>{
+    const c = e.target.closest("[data-sk],[data-sw],[data-sct]"); if (!c) return;
+    const k = c.dataset.sk!==undefined?"sk":c.dataset.sw!==undefined?"sw":"sct";
+    $$(`[data-${k}]`,f).forEach(b=>b.setAttribute("aria-checked", b===c));
+    sellDraft[{sk:"kind",sw:"when",sct:"callTime"}[k]] = c.dataset[k]; saveDraft();
+  });
+  f.addEventListener("input", collectSell);
+  if ($("#slP")) $("#slP").addEventListener("input", e=>{ const d=e.target.value.replace(/\D/g,""); e.target.value = d?fmt(+d):""; collectSell(); });
+  if ($("#slPh")){ phoneInput($("#slPh")); $("#slN").addEventListener("blur",e=>{ if(e.target.value) vName(e.target); }); }
+  if ($("#sellBack")) $("#sellBack").onclick = ()=>{ sellStep--; renderSell(); $("#sellH").focus(); };
+  f.addEventListener("submit", async e=>{
+    e.preventDefault(); collectSell();
+    if (s<3){ sellStep++; renderSell(); $("#sellH").focus(); return; }
+    const n=$("#slN"), p=$("#slPh"); const a=vName(n), b=vPhone(p);
+    if (!a||!b){ (a?p:n).focus(); return; }
+    const btn = $("button[type=submit]",f); setLoading(btn,true);
+    try{
+      await submitLead({kind:"sell",...sellDraft,phone:"+976"+sellDraft.phone.replace(/\D/g,"")});
+      try{ localStorage.removeItem("bair:sellDraft"); }catch(err){}
+      $("#sellCard").innerHTML = `<div class="success" tabindex="-1" id="sOk"><span class="ti">${ico("i-check","lg")}</span><h2 class="h2">Баярлалаа!</h2><p class="muted">Таны байрны талаар 24 цагийн дотор холбогдоно.</p><a class="btn btn-line" href="#home">Нүүр хуудас руу буцах</a></div>`;
+      $("#sOk").focus();
+    }catch(err){ setLoading(btn,false); toast(sendFailMsg(),"bad"); }
+  });
+}
+function collectSell(){
+  const v = id => $(id) ? $(id).value : undefined;
+  if ($("#slD")) Object.assign(sellDraft,{d:v("#slD"),rooms:v("#slR"),area:v("#slA").replace(/\D/g,"")});
+  if ($("#slP")) Object.assign(sellDraft,{price:v("#slP"),needValuation:$("#slV").checked});
+  if ($("#slN")) Object.assign(sellDraft,{name:v("#slN"),phone:v("#slPh")});
+  saveDraft();
+}
+
+/* === CALCULATOR === */
+const calc = {price:300e6, down:30, rate:6, years:20, listing:null};
+function parseNum(s){ return +String(s).replace(/\D/g,"") || 0; }
+function renderCalc(){
+  const {m, loan, total, interest} = monthly(calc.price, calc.rate, calc.years, calc.down);
+  $("#cPay").textContent = fmt(Math.round(m/100)*100) + " ₮";
+  $("#cLoan").textContent = fmt(loan)+" ₮";
+  $("#cInt").textContent = fmt(interest)+" ₮";
+  $("#cTotal").textContent = fmt(total)+" ₮";
+  $("#cDownOut").textContent = `${calc.down}% · ${money(calc.price*calc.down/100)}`;
+  $("#cRateOut").textContent = `${calc.rate}%`;
+  const pp = total ? loan/total*100 : 0;
+  $("#cBarP").style.width = pp+"%"; $("#cBarR").style.width = (100-pp)+"%";
+  $$("#cRateChips [data-rate]").forEach(b=>b.setAttribute("aria-checked", (b.dataset.rate==="6" && calc.rate===6) || (b.dataset.rate==="17" && calc.rate>=16 && calc.rate<=18)));
+  $$("#cTerm [data-y]").forEach(b=>b.setAttribute("aria-checked", +b.dataset.y===calc.years));
+  const l = calc.listing && DATA.find(x=>x.id===calc.listing);
+  $("#calcFor").textContent = l ? `Сарын төлбөр · ${l.id.toUpperCase()}` : "Сарын төлбөр";
+  $("#calcBack").hidden = !l;
+  if (l) $("#calcBack").href = "#"+l.id;
+}
+let calcTracked = false;
+function calcUsed(){ if (!calcTracked){ track("calculator_use"); calcTracked = true; } }
+$("#cPrice").addEventListener("input", e=>{ const v=parseNum(e.target.value); e.target.value = v?fmt(v):""; calc.price=v; renderCalc(); calcUsed(); });
+$("#cDown").addEventListener("input", e=>{ calc.down=+e.target.value; renderCalc(); calcUsed(); });
+$("#cRate").addEventListener("input", e=>{ calc.rate=+e.target.value; renderCalc(); calcUsed(); });
+$("#cRateChips").addEventListener("click", e=>{ const b=e.target.closest("[data-rate]"); if(!b) return; calc.rate=+b.dataset.rate; $("#cRate").value=calc.rate; renderCalc(); calcUsed(); });
+$("#cTerm").addEventListener("click", e=>{ const b=e.target.closest("[data-y]"); if(!b) return; calc.years=+b.dataset.y; renderCalc(); calcUsed(); });
+function placeCalc(slot){ const c=$("#calc"); $(slot).appendChild(c); c.hidden=false; }
+
+/* === DETAIL === */
+let currentListing = null, lbList = [], lbIdx = 0, lbTitle = "";
+function mapSvg(l){
+  // Stylized static map: river Tuul, ring roads, pin. Not to scale.
+  const pos = {zaisan:[52,72],yarmag:[30,78],tov:[50,40],khanuul:[38,64],bayanzurkh:[76,42],nisekh:[22,82]}[l.d];
+  return `<svg viewBox="0 0 100 56" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${DISTRICTS[l.d].name} орчмын газрын зургийн дүрслэл">
+    <rect width="100" height="56" fill="var(--surface-2)"/>
+    <g stroke="var(--line)" stroke-width=".35" fill="none">${Array.from({length:12},(_,i)=>`<path d="M${i*9} 0 L${i*9+6} 56"/>`).join("")}${Array.from({length:7},(_,i)=>`<path d="M0 ${i*9} L100 ${i*9+3}"/>`).join("")}</g>
+    <path d="M0 47 C 18 43, 30 49, 46 45 S 74 40, 100 44" stroke="color-mix(in srgb,var(--sage) 45%,var(--surface-2))" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M0 22 L100 25" stroke="var(--surface)" stroke-width="1.6"/><path d="M8 0 C 30 20, 34 40, 30 56" stroke="var(--surface)" stroke-width="1.2" fill="none"/><path d="M70 0 L64 56" stroke="var(--surface)" stroke-width="1.2"/>
+    <path d="M0 56 L12 50 L24 53 L36 48 L48 52 L60 47 L72 51 L86 46 L100 50 L100 56Z" fill="color-mix(in srgb,var(--muted) 18%,var(--surface-2))"/>
+    <text x="4" y="54" font-size="2.4" fill="var(--muted)" font-family="Manrope,sans-serif" font-weight="600">Богд уул</text>
+    <text x="74" y="41" font-size="2.2" fill="var(--muted)" font-family="Manrope,sans-serif">Туул гол</text>
+    <g transform="translate(${pos[0]} ${pos[1]*.56})"><circle r="6" fill="var(--gold)" opacity=".18"/><circle r="2.6" fill="var(--gold)" stroke="var(--surface)" stroke-width=".8"/></g>
+  </svg>`;
+}
+function renderDetail(id){
+  const l = DATA.find(x=>x.id===id);
+  const v = $("#v-detail");
+  if (!DATA.length){ v.innerHTML = `<div class="wrap d-top"></div><div class="wrap"><div class="sk" style="aspect-ratio:16/7;border-radius:32px;margin-top:16px"></div><div class="sk" style="height:40px;width:60%;margin-top:32px"></div><div class="sk" style="height:28px;width:30%;margin-top:16px"></div></div>`; return; }
+  if (!l){ v.innerHTML = `<div class="wrap page-head" style="padding-bottom:var(--sec)"><div class="empty"><span class="ti">${ico("i-search","lg")}</span><h1 class="h3">Энэ зар олдсонгүй.</h1><p>Зар хасагдсан эсвэл линк буруу байж магадгүй.</p><a class="btn btn-ink" href="#listings">Байрнуудыг үзэх</a></div></div>`; return; }
+  currentListing = id;
+  const D = DISTRICTS[l.d], rent = l.deal==="rent", sold = l.status==="sold";
+  const pics = l.imgs, alts = pics.map((p,i)=> i===0?`${D.name}, ${l.rooms} өрөө байрны зочны өрөө`: p.startsWith("ub")?`${D.name} орчмын харагдац`:`${D.name}, ${l.rooms} өрөө байрны дотор, зураг ${i+1}`);
+  lbList = pics; lbTitle = l.title;
+  const mo = monthly(l.price);
+  const longDesc = l.desc.join(" ").length > 400;
+  const sim = DATA.filter(x=>x.id!==l.id && x.status!=="sold" && x.deal===l.deal && (x.d===l.d || Math.abs(x.price-l.price)/l.price<.4)).slice(0,3);
+  const fill = sim.length<3 ? DATA.filter(x=>x.id!==l.id && x.status!=="sold" && x.deal===l.deal && !sim.includes(x)).slice(0,3-sim.length) : [];
+  const similar = [...sim,...fill];
+  const row = (k,val)=>`<div><dt>${k}</dt><dd>${esc(val)}</dd></div>`;
+  const mapQ = encodeURIComponent(`${D.name}, Ulaanbaatar`);
+  v.innerHTML = `<div class="wrap">
+    <div class="d-top">
+      <a class="btn btn-line btn-sm" href="#listings" data-back>${ico("i-left","sm")}Буцах</a>
+      <div class="r">
+        <button class="ibtn" data-share aria-label="Хуваалцах">${ico("i-share")}</button>
+        ${sold?"":`<button class="ibtn" data-heart="${l.id}" aria-pressed="false" aria-label="Хадгалах">${ico("i-heart")}</button>`}
+      </div>
+    </div>
+    <div class="gal">
+      <div class="gal-s"><div class="slides" id="galS">${pics.map((p,i)=>`<button data-open="${i}" aria-label="Зураг ${i+1} / ${pics.length} томоор харах"><img src="${img(p)}" alt="${esc(alts[i])}" ${i?'loading="lazy"':'fetchpriority="high"'} width="960" height="720"></button>`).join("")}</div><span class="gal-count" id="galC">1 / ${pics.length}</span></div>
+      <div class="gal-m">${pics.slice(0,5).map((p,i)=>`<button data-open="${i}" aria-label="Зураг ${i+1} / ${pics.length} томоор харах"><img src="${img(p)}" alt="${esc(alts[i])}" ${i?'loading="lazy"':""} width="960" height="720">${i===4?`<span class="gal-more">${ico("i-grid","sm")}Бүх зураг (${pics.length})</span>`:""}</button>`).join("")}</div>
+    </div>
+    <div class="d-grid">
+      <div class="d-main">
+        <div class="d-head">
+          <div class="chips">${sold?`<span class="tag" style="background:var(--ink);color:var(--bg)">Зарагдсан</span>`:tagsHtml(l)}<span class="example">${ico("i-info","sm")}Жишээ зар · Бодит зараар солигдоно</span></div>
+          <h1 class="h1">${esc(l.title)}</h1>
+          <p class="card-loc" style="font-size:16px">${ico("i-pin","sm")} ${D.name}, ${D.dist} · <a href="https://www.google.com/maps/search/?api=1&query=${mapQ}" target="_blank" rel="noopener" class="link" style="font-size:15px">Газрын зураг</a></p>
+          <div class="d-price"><span class="price" aria-label="${moneySpoken(l.price)}${rent?" сард":""}">${money(l.price)}${rent?`<span class="small muted"> /сар</span>`:""}</span>${l.oldPrice?`<span class="old" style="font-size:16px">${money(l.oldPrice)}</span>`:""}<span class="muted small">${rent?KINDS[l.kind].name:`${(l.price/l.area/MLN).toFixed(1)} сая ₮/м²`}</span></div>
+          ${!rent&&!sold?`<button class="mort-link" data-calc-open>${ico("i-percent","sm")}Сард ≈ <b class="num">${fmt(Math.round(mo.m/100)*100)} ₮</b> <span class="muted" style="font-weight:500">· 6%, 20 жил</span>${ico("i-right","sm")}</button>`:""}
+        </div>
+        <div class="kgrid">
+          <div>${ico(l.kind==="office"?"i-grid":"i-bed")}<span>Өрөө</span><b>${l.rooms}</b></div>
+          <div>${ico("i-area")}<span>Талбай</span><b>${l.area} м²</b></div>
+          <div>${ico("i-floors")}<span>Давхар</span><b>${l.floor}/${l.floors}</b></div>
+          <div>${ico("i-key")}<span>Ашиглалтад</span><b>${l.year}</b></div>
+          <div>${ico("i-car")}<span>Зогсоол</span><b>${/доор/.test(l.parking)?"Газар доор":/гараж/i.test(l.parking)?"Гараж":"Газар дээр"}</b></div>
+          <div>${ico("i-compass")}<span>Цонх</span><b>${esc(l.facing.split(",")[0])}</b></div>
+        </div>
+        <section aria-labelledby="dDesc"><h2 class="h2" id="dDesc" style="margin-bottom:16px">Тайлбар</h2>
+          <div class="desc bodyL measure ${longDesc?"clamp":""}" id="desc">${l.desc.map(p=>`<p>${esc(p)}</p>`).join("")}</div>
+          ${longDesc?`<button class="btn btn-ghost btn-sm" style="margin-top:8px;padding:0" aria-controls="desc" aria-expanded="false" id="moreDesc">Дэлгэрэнгүй унших ${ico("i-cd","sm")}</button>`:""}
+        </section>
+        <section aria-labelledby="dSpec"><h2 class="h2" id="dSpec" style="margin-bottom:20px">Нарийн мэдээлэл</h2>
+          <div class="spec">
+            <div><h4>Барилга</h4><dl>${row("Компани",l.company)}${row("Ашиглалтад орсон",l.year)}${row("Нийт давхар",l.floors)}${row("Лифт",l.elevator)}${row("Хамгаалалт",l.security)}${row("СӨХ",l.sokh)}</dl></div>
+            <div><h4>Байр</h4><dl>${row("Талбай",l.area+" м²")}${row("Өрөө",l.rooms)}${row("Угаалгын өрөө",l.baths)}${row("Тагт",l.balcony)}${row("Засвар",l.reno)}${row("Тавилга",l.furniture)}</dl></div>
+            <div><h4>Зогсоол, агуулах</h4><dl>${row("Зогсоол",l.parking)}${row("Агуулах",l.storage)}</dl></div>
+            ${rent?`<div><h4>Түрээс</h4><dl>${row("Барьцаа",l.deposit)}${row("Урьдчилгаа",l.advance)}${row("Төлбөрт орсон",l.incl)}${row("Хамгийн бага хугацаа",l.minTerm)}</dl></div>`
+                  :`<div><h4>Бичиг баримт</h4><dl>${row("Гэрчилгээтэй",l.cert)}${row("Ипотекд хамрагдах",l.mortgage)}${row("Бартер",l.barter)}</dl></div>`}
+          </div>
+        </section>
+        <section aria-labelledby="dNear"><h2 class="h2" id="dNear" style="margin-bottom:20px">Ойролцоо</h2>
+          <div class="near">${NEAR[l.d].map(([i,n,m])=>`<div><span class="ti">${ico(i)}</span><p><b>${n}</b><span>Алхаад ${m} минут</span></p></div>`).join("")}</div>
+        </section>
+        <section aria-labelledby="dMap"><h2 class="h2" id="dMap" style="margin-bottom:20px">Байршил</h2>
+          <div class="map">${mapSvg(l)}<a class="btn btn-ink btn-sm" href="https://www.google.com/maps/search/?api=1&query=${mapQ}" target="_blank" rel="noopener">Google Maps-д нээх ${ico("i-arrow","sm")}</a></div>
+        </section>
+      </div>
+      <aside class="side" aria-label="Агенттай холбогдох">
+        <div class="cpanel">
+          <div class="ag"><span class="av" aria-hidden="true">Б</span><p><b>Бат-Амгалан</b><span>Ихэвчлэн 1 цагийн дотор хариулдаг</span></p></div>
+          <a class="btn btn-gold btn-block" href="tel:" data-tel data-track="call_click">${ico("i-phone")}Залгах</a>
+          <div class="phone-line"><span data-phone>${phoneText()}</span><button class="btn btn-line" data-copy-phone>${ico("i-copy","sm")}Хуулах</button></div>
+          <div class="two">
+            <a class="btn btn-line" data-msgr target="_blank" rel="noopener" data-track="messenger_click">${ico("i-msg","sm")}Messenger</a>
+            <a class="btn btn-line" data-viber target="_blank" rel="noopener" data-track="viber_click">${ico("i-viber","sm")}Viber</a>
+          </div>
+          <button class="btn btn-ink btn-block" data-viewing ${sold?"disabled":""}>${ico("i-cal")}Үзлэг товлох</button>
+        </div>
+        <p class="ref">Зарын дугаар: ${l.id.toUpperCase()} <span>Шинэчилсэн: ${l.updated}</span></p>
+      </aside>
+    </div>
+    <section class="sec sec-last" aria-labelledby="dSim">
+      <div class="sec-head"><h2 class="h2" id="dSim">Төстэй байрууд</h2><a class="link" href="#listings">Бүгдийг үзэх ${ico("i-right","sm")}</a></div>
+      <div class="grid" id="simGrid">${similar.map(cardHtml).join("")}</div>
+    </section>
+  </div>`;
+  bindCards($("#simGrid"));
+  $$("img", v).forEach(imgErr);
+  applyContacts(v);
+  const gs = $("#galS");
+  gs.addEventListener("scroll", ()=>{ $("#galC").textContent = `${Math.round(gs.scrollLeft/gs.clientWidth)+1} / ${pics.length}`; }, {passive:true});
+  const md = $("#moreDesc");
+  if (md) md.onclick = ()=>{ const open = $("#desc").classList.toggle("clamp"); md.setAttribute("aria-expanded", !open); md.innerHTML = open ? `Дэлгэрэнгүй унших ${ico("i-cd","sm")}` : "Хураах"; };
+  // SEO per listing
+  document.title = `${l.title} — ${money(l.price)}${rent?" /сар":""} · Bair.mn`;
+  setMeta("description", `${D.name}, ${l.rooms} өрөө, ${l.area} м². ${l.desc[0]}`);
+  setMeta("og:title", `${l.title} — ${money(l.price)}`, true);
+  setMeta("og:image", img(l.imgs[0]), true);
+  setLD({"@context":"https://schema.org","@type":"Offer","name":l.title,"price":l.price,"priceCurrency":"MNT","availability":sold?"https://schema.org/SoldOut":"https://schema.org/InStock",
+    "itemOffered":{"@type":"Residence","name":l.title,"address":{"@type":"PostalAddress","addressLocality":"Улаанбаатар","addressRegion":D.dist},"floorSize":{"@type":"QuantitativeValue","value":l.area,"unitCode":"MTK"},"numberOfRooms":l.rooms}});
+  track("listing_view",{listing:l.id});
+  syncHearts();
+}
+function setMeta(name, val, prop){ let m = document.querySelector(prop?`meta[property="${name}"]`:`meta[name="${name}"]`); if(!m){ m=document.createElement("meta"); m.setAttribute(prop?"property":"name",name); document.head.appendChild(m);} m.setAttribute("content",val); }
+function setLD(obj){ let s = $("#ldListing"); if(!s){ s=document.createElement("script"); s.type="application/ld+json"; s.id="ldListing"; document.head.appendChild(s);} s.textContent = obj?JSON.stringify(obj):""; }
+
+$("#v-detail").addEventListener("click", e=>{
+  const o = e.target.closest("[data-open]");
+  if (o){ openLB(+o.dataset.open); return; }
+  if (e.target.closest("[data-calc-open]")){ const l = DATA.find(x=>x.id===currentListing); Object.assign(calc,{price:l.price,listing:l.id}); $("#cPrice").value = fmt(l.price); go("calculator"); return; }
+  if (e.target.closest("[data-share]")){ share(); return; }
+  const back = e.target.closest("[data-back]");
+  if (back && history.length>1 && prevRoute){ e.preventDefault(); history.back(); }
+});
+async function share(){
+  track("share_click",{listing:currentListing});
+  const url = location.href;
+  try{ await navigator.clipboard.writeText(url); toast("Линк хуулагдлаа"); }
+  catch(e){ toast("Хаягийн мөрөөс линкийг хуулна уу","info"); }
+}
+
+/* lightbox */
+function openLB(i){
+  lastFocus = document.activeElement; lbIdx = i;
+  $("#lb").classList.add("open"); document.documentElement.style.overflow="hidden";
+  $("#lbTitle").textContent = lbTitle; showLB(); $("[data-lb-close]").focus();
+  track("gallery_open",{listing:currentListing});
+}
+function showLB(){
+  const im = $("#lbImg"); im.src = img(lbList[lbIdx]); im.alt = `${lbTitle}, зураг ${lbIdx+1}`;
+  $("#lbCap").textContent = `${lbIdx+1} / ${lbList.length}`;
+  $("#lbImg").setAttribute("aria-label", `Зураг ${lbIdx+1} / ${lbList.length}`);
+}
+function stepLB(d){ lbIdx = (lbIdx + d + lbList.length) % lbList.length; showLB(); }
+function closeLB(){ $("#lb").classList.remove("open"); document.documentElement.style.overflow=""; if (lastFocus) lastFocus.focus({preventScroll:true}); }
+$("#lb").addEventListener("click", e=>{ const b=e.target.closest("[data-lb]"); if(b) stepLB(+b.dataset.lb); if(e.target.closest("[data-lb-close]")) closeLB(); });
+let tx = null;
+$("#lbStage").addEventListener("touchstart", e=>{ tx = e.touches[0].clientX; }, {passive:true});
+$("#lbStage").addEventListener("touchend", e=>{ if (tx===null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx)>40) stepLB(dx<0?1:-1); tx=null; });
+
+/* === SAVED / COMPARE === */
+function renderSaved(){
+  const list = saved.map(id=>DATA.find(x=>x.id===id)).filter(Boolean);
+  compareSel = compareSel.filter(id=>saved.includes(id));
+  const b = $("#savedBody");
+  if (!list.length){
+    b.innerHTML = `<div class="empty"><span class="ti">${ico("i-heart","lg")}</span><h2 class="h3">Хадгалсан байр алга.</h2><p>Таалагдсан байрныхаа ♡ дээр дарвал энд хадгалагдана.</p><a class="btn btn-ink" href="#listings">Байрнуудыг үзэх</a></div>`;
+    return;
+  }
+  b.innerHTML = `<div class="grid" id="savedGrid">${list.map(cardHtml).join("")}</div><div id="cmpBox"></div>`;
+  $$("#savedGrid .card[data-id]").forEach(c=>{
+    const id = c.dataset.id;
+    const w = document.createElement("div"); w.className="cmp-pick";
+    w.innerHTML = `<label><input type="checkbox" data-cmp="${id}" ${compareSel.includes(id)?"checked":""}> Харьцуулах</label>`;
+    $(".card-media", c).appendChild(w);
+  });
+  bindCards($("#savedGrid")); syncHearts(); renderCompare();
+}
+function renderCompare(){
+  const box = $("#cmpBox"); if (!box) return;
+  const ls = compareSel.map(id=>DATA.find(x=>x.id===id));
+  if (ls.length<2){ box.innerHTML = `<p class="muted small">${ls.length?"Дахиад нэг байр сонгоход харьцуулалт гарна.":"Харьцуулахыг хүсвэл 2–3 байр сонгоно уу."}</p>`; return; }
+  const rows = [["Үнэ",l=>money(l.price)+(l.deal==="rent"?" /сар":"")],["Байршил",l=>DISTRICTS[l.d].name],["Өрөө",l=>l.rooms],["Талбай",l=>l.area+" м²"],["м² үнэ",l=>l.deal==="sale"?(l.price/l.area/MLN).toFixed(1)+" сая ₮":"—"],["Давхар",l=>`${l.floor}/${l.floors}`],["Ашиглалтад",l=>l.year],["Зогсоол",l=>l.parking],["Ипотек",l=>l.mortgage],["Сарын төлбөр",l=>l.deal==="sale"?"≈ "+fmt(Math.round(monthly(l.price).m/100)*100)+" ₮":"—"]];
+  box.innerHTML = `<h2 class="h2" style="margin-bottom:20px">Харьцуулалт</h2><div class="cmp-wrap"><table class="cmp"><thead><tr><th scope="col"><span class="sr">Үзүүлэлт</span></th>${ls.map(l=>`<td><img src="${img(l.imgs[0])}" alt=""><a href="#${l.id}" style="text-decoration:none">${esc(l.title)}</a></td>`).join("")}</tr></thead><tbody>${rows.map(([k,f])=>`<tr><th scope="row">${k}</th>${ls.map(l=>`<td>${esc(f(l))}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+$("#savedBody").addEventListener("change", e=>{
+  const c = e.target.closest("[data-cmp]"); if (!c) return;
+  if (c.checked){ if (compareSel.length>=3){ c.checked=false; toast("3 хүртэл байр харьцуулна","info"); return; } compareSel.push(c.dataset.cmp); }
+  else compareSel = compareSel.filter(x=>x!==c.dataset.cmp);
+  renderCompare();
+});
+
+/* === CONTACTS === */
+function applyContacts(root=document){
+  $$("[data-phone]",root).forEach(el=>el.textContent = phoneText());
+  $$("[data-tel]",root).forEach(a=>{ a.href = CONFIG.phone ? "tel:+976"+CONFIG.phone : "#"; if(!CONFIG.phone) a.setAttribute("data-noop",""); });
+  $$("[data-msgr]",root).forEach(a=>{ a.href = CONFIG.messenger || "#"; if(!CONFIG.messenger) a.setAttribute("data-noop",""); });
+  $$("[data-viber]",root).forEach(a=>{ a.href = CONFIG.viber || "#"; if(!CONFIG.viber) a.setAttribute("data-noop",""); });
+  $$("[data-ig]",root).forEach(a=>{ a.href = CONFIG.instagram || "#"; if(!CONFIG.instagram) a.setAttribute("data-noop",""); });
+  $$("[data-fb]",root).forEach(a=>{ a.href = CONFIG.facebook || "#"; if(!CONFIG.facebook) a.setAttribute("data-noop",""); });
+}
+document.addEventListener("click", async e=>{
+  const t = e.target.closest("[data-track]"); if (t) track(t.dataset.track,{listing:currentView==="detail"?currentListing:""});
+  const noop = e.target.closest("[data-noop]");
+  if (noop){ e.preventDefault(); toast("Холбоо барих мэдээлэл удахгүй нэмэгдэнэ","info"); return; }
+  const c = e.target.closest("[data-copy-phone]");
+  if (c){
+    track("phone_copy");
+    if (!CONFIG.phone){ toast("Утасны дугаар удахгүй нэмэгдэнэ","info"); return; }
+    try{ await navigator.clipboard.writeText(CONFIG.phone); }catch(err){}
+    const o = c.innerHTML; c.innerHTML = `${ico("i-check","sm")}Хуулагдлаа ✓`.replace(" ✓",""); setTimeout(()=>c.innerHTML=o,1600); toast("Хуулагдлаа");
+  }
+});
+
+/* === BOTTOM BAR === */
+function renderBar(){
+  const bb = $("#bbar");
+  if (currentView==="detail"){
+    const sold = DATA.find(x=>x.id===currentListing)?.status==="sold";
+    bb.innerHTML = `<a class="btn btn-gold" href="tel:" data-tel data-track="call_click">${ico("i-phone")}Залгах</a><button class="btn btn-ink" data-viewing ${sold?"disabled":""}>${ico("i-cal")}Үзлэг товлох</button>`;
+  } else {
+    bb.innerHTML = `<a class="btn btn-gold" href="tel:" data-tel data-track="call_click">${ico("i-phone")}Залгах</a><a class="btn btn-line" data-msgr target="_blank" rel="noopener" data-track="messenger_click">${ico("i-msg")}Messenger</a><a class="ibtn savebtn" href="#saved" aria-label="Хадгалсан байрууд">${ico("i-heart")}<span class="badge" data-saved-count hidden>0</span></a>`;
+  }
+  bb.classList.remove("hide");
+  applyContacts(bb); syncHearts();
+}
+let lastY = 0;
+addEventListener("scroll", ()=>{
+  const y = scrollY;
+  $("#hdr").classList.toggle("scrolled", y>24);
+  if (currentView!=="detail") $("#bbar").classList.toggle("hide", y>lastY && y>300);
+  lastY = y;
+}, {passive:true});
+
+/* === MENU === */
+function openMenu(){ lastFocus=document.activeElement; $("#mmenu").classList.add("open"); $("#menuBtn").setAttribute("aria-expanded","true"); document.documentElement.style.overflow="hidden"; setTimeout(()=>$("[data-close-menu]").focus(),50); }
+function closeMenu(){ if(!$("#mmenu").classList.contains("open")) return; $("#mmenu").classList.remove("open"); $("#menuBtn").setAttribute("aria-expanded","false"); document.documentElement.style.overflow=""; }
+$("#menuBtn").onclick = openMenu;
+$("#mmenu").addEventListener("click", e=>{ if (e.target.closest("a,[data-close-menu]")) closeMenu(); });
+
+/* === THEME === */
+function setTheme(t){
+  if (t==="system") document.documentElement.removeAttribute("data-theme"); else document.documentElement.setAttribute("data-theme", t);
+  $$("[data-theme-set]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.themeSet===t));
+  store.set("theme", t);
+}
+document.addEventListener("click", e=>{ const b=e.target.closest("[data-theme-set]"); if(b) setTheme(b.dataset.themeSet); });
+
+/* === REVEAL === */
+const io = "IntersectionObserver" in window ? new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target);} }),{rootMargin:"0px 0px -8% 0px"}) : null;
+function observe(root=document){ $$(".rv:not(.in)",root).forEach(el=> io ? io.observe(el) : el.classList.add("in")); }
+
+/* === ROUTER === */
+let currentView = "home", prevRoute = null;
+const ROUTES = ["home","listings","buy","rent","saved","sell","calculator","agent"];
+function go(r){ if (location.hash==="#"+r) route(); else location.hash = r; }
+function show(view){
+  $$(".view").forEach(v=>v.hidden = v.dataset.view!==view);
+  currentView = view;
+  $$(".nav a").forEach(a=>a.removeAttribute("aria-current"));
+}
+function route(){
+  closeSheet(); closeMenu(); if ($("#lb").classList.contains("open")) closeLB();
+  const h = decodeURIComponent(location.hash.slice(1)) || "home";
+  const navOn = k => { const a=$(`.nav [data-nav="${k}"]`); if(a) a.setAttribute("aria-current","page"); };
+  if (h!=="detail") setLD(null);
+  if (/^bair-\d{3}$/.test(h)){
+    show("detail"); renderDetail(h); scrollTo({top:0,behavior:"instant"});
+  } else if (h==="listings"||h==="buy"||h==="rent"){
+    if (h!=="listings"){ resetFilters(); filters.deal = h==="buy"?"sale":"rent"; }
+    show("listings"); renderListings(); navOn(h==="listings"?(filters.deal==="sale"?"buy":filters.deal==="rent"?"rent":""):h);
+    scrollTo({top:0,behavior:"instant"});
+    document.title = `${$("#listH").textContent} · Bair.mn`;
+  } else if (h==="saved"){ show("saved"); navOn("saved"); renderSaved(); scrollTo({top:0,behavior:"instant"}); document.title="Хадгалсан · Bair.mn"; }
+  else if (h==="sell"){ show("sell"); sellStep=1; renderSell(); navOn("sell"); scrollTo({top:0,behavior:"instant"}); document.title="Байраа зарах · Bair.mn"; }
+  else if (h==="calculator"){ show("calculator"); placeCalc("#calcPageSlot"); $("#calc").classList.add("in"); renderCalc(); navOn("calculator"); scrollTo({top:0,behavior:"instant"}); document.title="Ипотекийн тооцоолуур · Bair.mn"; }
+  else {
+    const wasHome = currentView==="home";
+    show("home"); calc.listing = null; if (h==="home") navOn("home"); placeCalc("#calcHomeSlot"); renderCalc();
+    document.title = "Bair.mn — Байр биш, дараагийн амьдралаа сонго.";
+    if (h==="agent"){ navOn("agent"); setTimeout(()=>$("#agent").scrollIntoView({behavior: wasHome?"smooth":"instant"}), 30); }
+    else if (!wasHome || h==="home") scrollTo({top:0,behavior:"instant"});
+  }
+  if (currentView!=="detail"){ currentListing = null; }
+  renderBar(); syncHearts(); observe();
+  prevRoute = h;
+}
+addEventListener("hashchange", route);
+document.addEventListener("click", e=>{ const s=e.target.closest("[data-scroll]"); if(s){ e.preventDefault(); if(currentView!=="home"){ location.hash="home"; } setTimeout(()=>document.getElementById(s.dataset.scroll)?.scrollIntoView({behavior:"smooth",block:"center"}),60); } });
+
+/* === INTERACTIONS (Apple-style) === */
+// hero: settle-in zoom, then scroll-linked fade/lift of the copy
+function heroFx(){
+  const hero = $("#hero"); if (!hero) return;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>hero.classList.add("ready")));
+  const copy = $("#heroCopy"); let ticking = false;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  addEventListener("scroll", ()=>{
+    if (reduce || ticking || currentView!=="home") return; ticking = true;
+    requestAnimationFrame(()=>{ const y = Math.min(scrollY, 700); copy.style.transform = `translateY(${y*-.18}px)`; copy.style.opacity = String(Math.max(0, 1 - y/520)); ticking = false; });
+  }, {passive:true});
+}
+// gallery arrows
+function galNav(){
+  const g = $("#featGrid"), btns = $$("[data-gal]");
+  const upd = ()=>{ btns[0].disabled = g.scrollLeft < 8; btns[1].disabled = g.scrollLeft + g.clientWidth > g.scrollWidth - 8; };
+  btns.forEach(b=>b.addEventListener("click", ()=> g.scrollBy({left:(g.clientWidth*.8)*+b.dataset.gal, behavior:"smooth"})));
+  g.addEventListener("scroll", upd, {passive:true}); addEventListener("resize", upd); setTimeout(upd, 600);
+}
+// theme cycle (rail)
+document.addEventListener("click", e=>{
+  if (!e.target.closest("[data-theme-cycle]")) return;
+  const cur = document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  setTheme(cur==="dark" ? "light" : "dark");
+});
+
+/* === BOOT === */
+(async function boot(){
+  const th = store.get("theme","system"); setTheme(th);
+  applyContacts(); initSearch();
+  $("#featGrid").innerHTML = skeletons(3);
+  $("#listGrid").innerHTML = skeletons(6);
+  route();
+  try{
+    DATA = await loadListings();
+  }catch(e){
+    $("#featGrid").innerHTML = `<div class="empty" style="grid-column:1/-1"><span class="ti">${ico("i-alert","lg")}</span><h3 class="h3">Зар ачаалагдсангүй.</h3><p>Интернэтээ шалгаад хуудсаа дахин ачаална уу.</p></div>`;
+    return;
+  }
+  renderHome();
+  route(); heroFx(); galNav();
+})();
+</script>
+</body>
+</html>
