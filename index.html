@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Bair.mn</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Улаанбаатарын сонгосон, шалгасан байрууд. Агент Бат-Амгалантай шууд холбогдоно.">
+<meta name="description" content="Улаанбаатарын сонгосон, шалгасан байрууд. RE/MAX Summit-ийн агент Сугар-Эрдэнэтэй шууд холбогдоно.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Bair.mn — Байр биш, дараагийн амьдралаа сонго.">
 <meta property="og:description" content="Сонгосон, шалгасан байрууд. Агенттай шууд харилцана.">
@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <link rel="preload" as="image" href="img/hero.webp" fetchpriority="high">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"RealEstateAgent","name":"Bair.mn — Бат-Амгалан","areaServed":"Улаанбаатар","url":"https://bair.mn","slogan":"Байр биш, дараагийн амьдралаа сонго."}
+{"@context":"https://schema.org","@type":"RealEstateAgent","name":"Bair.mn — Сугар-Эрдэнэ Л.","telephone":"+97695084005","sameAs":["https://www.facebook.com/Sgr.lk"],"memberOf":"RE/MAX Summit","areaServed":"Улаанбаатар","url":"https://bair.mn","slogan":"Байр биш, дараагийн амьдралаа сонго."}
 </script>
 <style>
 /* =========================================================
@@ -143,7 +143,7 @@ p{margin:0}
   .ri .badge{top:4px;right:4px}
   .rail-logo{width:48px;height:40px;display:grid;place-items:center;color:var(--ink);font-weight:700;font-size:22px;letter-spacing:-.05em;text-decoration:none;margin-bottom:2px}
   .rail-logo span{color:var(--accent)}
-  .rail-av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#3a3a3c,#1d1d1f);color:#fff;font-weight:600;font-size:14px}
+  .rail-av{width:32px;height:32px;border-radius:50%;object-fit:cover;display:grid;place-items:center;background:linear-gradient(135deg,#3a3a3c,#1d1d1f);color:#fff;font-weight:600;font-size:14px}
 }
 .badge{position:absolute;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--heart);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;font-variant-numeric:tabular-nums;top:2px;right:0}
 .savebtn{position:relative}
@@ -400,7 +400,10 @@ textarea.inp{min-height:96px;padding:12px 14px;resize:vertical}
 .agent{display:grid;gap:32px;padding-block:var(--sec)}
 @media (min-width:900px){.agent{grid-template-columns:5fr 7fr;gap:72px;align-items:center}}
 .portrait{position:relative;aspect-ratio:4/5;border-radius:var(--r-xl);overflow:hidden;background:radial-gradient(120% 90% at 30% 20%,#3a3a3c 0%,#1d1d1f 60%,#0b0b0c 100%);display:grid;place-items:center;max-width:480px}
-.portrait .mono{font-size:160px;line-height:1;color:rgba(255,255,255,.88);font-weight:600;letter-spacing:-.05em}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.deal{display:grid;gap:4px;padding:18px 22px;border-radius:var(--r-m);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);justify-self:start}
+.deal span{font-size:13px;color:var(--on-dark-muted)}
+.deal b{font-size:34px;font-weight:600;letter-spacing:-.03em;line-height:1.1}
 .portrait .cap{position:absolute;left:18px;bottom:18px;right:18px;font-size:12px;color:var(--on-dark-muted);display:flex;gap:6px;align-items:center}
 .agent .chips .chip{background:transparent;color:var(--on-dark);border-color:rgba(255,255,255,.22);min-height:36px;font-size:14px;cursor:default}
 .contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
@@ -580,7 +583,7 @@ textarea.inp{min-height:96px;padding:12px 14px;resize:vertical}
 @media (min-width:1000px){.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 96px)}}
 .cpanel{border-radius:var(--r-xl);padding:24px;background:var(--bg-2);display:grid;gap:12px}
 .ag{display:flex;gap:14px;align-items:center}
-.ag .av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#3a3a3c,#1d1d1f);color:#fff;display:grid;place-items:center;font-size:22px;font-weight:600;flex:none}
+.ag .av{width:52px;height:52px;border-radius:50%;object-fit:cover;background:linear-gradient(135deg,#3a3a3c,#1d1d1f);color:#fff;display:grid;place-items:center;font-size:22px;font-weight:600;flex:none}
 .ag b{display:block;font-weight:600}
 .ag span{font-size:13px;color:var(--muted)}
 .phone-line{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:5px 5px 5px 16px;border-radius:999px;background:var(--surface);font-weight:600;font-variant-numeric:tabular-nums}
@@ -723,7 +726,7 @@ option,optgroup{background:var(--surface);color:var(--ink)}
   <a class="ri" href="#calculator" data-nav="calculator" aria-label="Тооцоолуур"><svg class="ico"><use href="#i-percent"/></svg><span class="tip" aria-hidden="true">Тооцоолуур</span></a>
   <a class="ri" href="#sell" data-nav="sell" aria-label="Байраа зарах"><svg class="ico"><use href="#i-tag"/></svg><span class="tip" aria-hidden="true">Байраа зарах</span></a>
   <span class="sep" aria-hidden="true"></span>
-  <a class="ri" href="#agent" data-nav="agent" aria-label="Агент Бат-Амгалан"><span class="rail-av" aria-hidden="true">Б</span><span class="tip" aria-hidden="true">Агент · Бат-Амгалан</span></a>
+  <a class="ri" href="#agent" data-nav="agent" aria-label="Агент Сугар-Эрдэнэ"><img class="rail-av" src="img/agent-sm.webp" alt="" width="32" height="32"><span class="tip" aria-hidden="true">Агент · Сугар-Эрдэнэ</span></a>
   <button class="ri" data-theme-cycle aria-label="Цайвар, бараан горим солих"><svg class="ico"><use href="#i-moon"/></svg><span class="tip" aria-hidden="true">Цайвар / бараан</span></button>
 </nav>
 <div class="tr glass">
@@ -803,8 +806,8 @@ option,optgroup{background:var(--surface);color:var(--ink)}
 
   <div class="wrap">
     <div class="trust rv">
-      <div><span class="ti"><svg class="ico"><use href="#i-key"/></svg></span><p><b>Зарсан байрууд</b><span>Бодит түүх, ил тод үнэ</span></p></div>
-      <div><span class="ti"><svg class="ico"><use href="#i-user"/></svg></span><p><b>Олон жилийн туршлага</b><span>Нэг агент, нэг хариуцлага</span></p></div>
+      <div><span class="ti"><svg class="ico"><use href="#i-key"/></svg></span><p><b>945 сая ₮-ийн гүйлгээ</b><span>Саяхан амжилттай хаасан</span></p></div>
+      <div><span class="ti"><svg class="ico"><use href="#i-user"/></svg></span><p><b>RE/MAX Summit-ийн агент</b><span>Нэг агент, нэг хариуцлага</span></p></div>
       <div><span class="ti"><svg class="ico"><use href="#i-percent"/></svg></span><p><b>Ипотекийн зөвлөгөө</b><span>6%-ийн зээлийн бичиг баримт</span></p></div>
       <div><span class="ti"><svg class="ico"><use href="#i-file"/></svg></span><p><b>Хууль, гэрээний дэмжлэг</b><span>Гэрчилгээ шалгалтаас гэрээ хүртэл</span></p></div>
     </div>
@@ -868,19 +871,19 @@ option,optgroup{background:var(--surface);color:var(--ink)}
   <!-- agent -->
   <section class="dark" style="margin-top:var(--sec)" id="agent" aria-labelledby="agentH">
     <div class="wrap agent">
-      <div class="portrait rv" role="img" aria-label="Агент Бат-Амгалангийн хөрөг (удахгүй оруулна)">
-        <span class="mono" aria-hidden="true">Б</span>
-        <span class="cap"><svg class="ico sm"><use href="#i-image"/></svg>Хөрөг зураг: agent.jpg</span>
+      <div class="portrait rv">
+        <img src="img/agent.webp" alt="Үл хөдлөх хөрөнгийн агент Сугар-Эрдэнэ Л." loading="lazy" width="600" height="752">
       </div>
       <div class="rv" style="display:grid;gap:20px">
         <p class="eyebrow">Таны агент</p>
-        <h2 class="h1" id="agentH">Бат-Амгалан</h2>
-        <p class="bodyL muted measure">Дунд болон дээд зэрэглэлийн орон сууц зарж, түрээслүүлдэг Улаанбаатарын үл хөдлөх хөрөнгийн агент. <span class="ph">Танилцуулга, туршлага удахгүй нэмэгдэнэ</span></p>
+        <h2 class="h1" id="agentH">Сугар-Эрдэнэ Л.</h2>
+        <p class="bodyL muted measure">RE/MAX Summit-ийн үл хөдлөх хөрөнгийн агент. Улаанбаатарт орон сууц худалдах, худалдан авах, түрээслэх бүх алхамд тань эхнээс нь гэрээ хүртэл хамт байна.</p>
+        <div class="deal"><span>Саяхан хаасан гүйлгээ · Referral борлуулалт</span><b class="num">945,000,000 ₮</b></div>
         <div>
           <p class="small muted" style="margin-bottom:10px">Ажилладаг бүс</p>
           <div class="chips"><span class="chip">Зайсан</span><span class="chip">Хан-Уул</span><span class="chip">Хотын төв</span><span class="chip">Яармаг</span><span class="chip">Баянзүрх</span><span class="chip">Нисэх</span></div>
         </div>
-        <p class="small muted">Мэргэжлийн гишүүнчлэл: <span class="ph">мэдээлэл удахгүй</span></p>
+        <p class="small muted">Харьяалал: RE/MAX Summit</p>
         <div class="contact-row">
           <div class="phone-box"><svg class="ico sm"><use href="#i-phone"/></svg><span data-phone></span><button class="btn btn-dline" data-copy-phone>Хуулах</button></div>
           <a class="btn btn-gold" href="tel:" data-tel data-track="call_click"><svg class="ico"><use href="#i-phone"/></svg>Залгах</a>
@@ -1097,11 +1100,11 @@ option,optgroup{background:var(--surface);color:var(--ink)}
    === CONFIG === (бодит мэдээллээр солих)
    ========================================================= */
 const CONFIG = {
-  phone: "",            // [УТАС] жишээ: "99112233"
-  messenger: "",        // [ТАТАХ] https://m.me/...
+  phone: "95084005",
+  messenger: "https://m.me/Sgr.lk",
   viber: "",            // [ТАТАХ] viber://chat?number=976...
   instagram: "",        // [ТАТАХ]
-  facebook: "",         // [ТАТАХ]
+  facebook: "https://www.facebook.com/Sgr.lk",
   leadEndpoint: ""      // Formspree URL эсвэл Telegram bot proxy
 };
 
@@ -1608,7 +1611,7 @@ function openViewing(listingId, mode){
     const btn = $("button[type=submit]", f); setLoading(btn, true);
     try{
       await submitLead({kind:mode||"viewing", listing:l?l.id:"", date:$("[data-date][aria-checked=true]",f)?.dataset.date, time:$("[data-time][aria-checked=true]",f)?.dataset.time, name:n.value.trim(), phone:"+976"+p.value.replace(/\D/g,""), note:$("#vNote").value});
-      $("#sheet").querySelector(".form").outerHTML = `<div class="success" tabindex="-1" id="vOk"><span class="ti">${ico("i-check","lg")}</span><h3 class="h2">Хүсэлт хүлээн авлаа!</h3><p class="muted measure">Бат-Амгалан тантай ажлын 1 цагийн дотор холбогдож цагийг баталгаажуулна.</p><button class="btn btn-ink" data-close>Хаах</button></div>`;
+      $("#sheet").querySelector(".form").outerHTML = `<div class="success" tabindex="-1" id="vOk"><span class="ti">${ico("i-check","lg")}</span><h3 class="h2">Хүсэлт хүлээн авлаа!</h3><p class="muted measure">Сугар-Эрдэнэ тантай удахгүй холбогдож цагийг баталгаажуулна.</p><button class="btn btn-ink" data-close>Хаах</button></div>`;
       $("#vOk").focus();
     }catch(err){ setLoading(btn,false); toast(sendFailMsg(),"bad"); }
   });
@@ -1795,10 +1798,10 @@ function renderDetail(id){
       </div>
       <aside class="side" aria-label="Агенттай холбогдох">
         <div class="cpanel">
-          <div class="ag"><span class="av" aria-hidden="true">Б</span><p><b>Бат-Амгалан</b><span>Ихэвчлэн 1 цагийн дотор хариулдаг</span></p></div>
+          <div class="ag"><img class="av" src="img/agent-sm.webp" alt="" width="52" height="52"><p><b>Сугар-Эрдэнэ Л.</b><span>RE/MAX Summit · Үл хөдлөх хөрөнгийн агент</span></p></div>
           <a class="btn btn-gold btn-block" href="tel:" data-tel data-track="call_click">${ico("i-phone")}Залгах</a>
           <div class="phone-line"><span data-phone>${phoneText()}</span><button class="btn btn-line" data-copy-phone>${ico("i-copy","sm")}Хуулах</button></div>
-          <div class="two">
+          <div class="two" style="grid-template-columns:repeat(auto-fit,minmax(0,1fr))">
             <a class="btn btn-line" data-msgr target="_blank" rel="noopener" data-track="messenger_click">${ico("i-msg","sm")}Messenger</a>
             <a class="btn btn-line" data-viber target="_blank" rel="noopener" data-track="viber_click">${ico("i-viber","sm")}Viber</a>
           </div>
@@ -1903,8 +1906,9 @@ function applyContacts(root=document){
   $$("[data-phone]",root).forEach(el=>el.textContent = phoneText());
   $$("[data-tel]",root).forEach(a=>{ a.href = CONFIG.phone ? "tel:+976"+CONFIG.phone : "#"; if(!CONFIG.phone) a.setAttribute("data-noop",""); });
   $$("[data-msgr]",root).forEach(a=>{ a.href = CONFIG.messenger || "#"; if(!CONFIG.messenger) a.setAttribute("data-noop",""); });
-  $$("[data-viber]",root).forEach(a=>{ a.href = CONFIG.viber || "#"; if(!CONFIG.viber) a.setAttribute("data-noop",""); });
-  $$("[data-ig]",root).forEach(a=>{ a.href = CONFIG.instagram || "#"; if(!CONFIG.instagram) a.setAttribute("data-noop",""); });
+  // Viber / Instagram: hidden until a real link is set in CONFIG
+  $$("[data-viber]",root).forEach(a=>{ a.href = CONFIG.viber || "#"; a.hidden = !CONFIG.viber; });
+  $$("[data-ig]",root).forEach(a=>{ a.href = CONFIG.instagram || "#"; a.hidden = !CONFIG.instagram; });
   $$("[data-fb]",root).forEach(a=>{ a.href = CONFIG.facebook || "#"; if(!CONFIG.facebook) a.setAttribute("data-noop",""); });
 }
 document.addEventListener("click", async e=>{

@@ -1,6 +1,6 @@
 # Bair.mn
 
-Улаанбаатарын үл хөдлөх хөрөнгийн агент Бат-Амгалангийн вэбсайт. Нэг `index.html` (HTML + CSS + vanilla JS), framework шаардлагагүй.
+RE/MAX Summit-ийн үл хөдлөх хөрөнгийн агент Сугар-Эрдэнэ Л.-ийн вэбсайт. Нэг `index.html` (HTML + CSS + vanilla JS), framework шаардлагагүй.
 
 ## Хуудсууд (hash route)
 `#home` · `#listings` · `#buy` · `#rent` · `#bair-001`…`#bair-012` · `#saved` · `#sell` · `#calculator` · `#agent`
@@ -13,9 +13,9 @@
 - Цайвар/бараан горим, гар утсанд тохирсон, keyboard болон screen reader дэмжлэгтэй
 
 ## Бодит мэдээллээр солих зүйлс
-- `index.html` доторх `CONFIG`: утас, Messenger, Viber, Instagram, Facebook, `leadEndpoint` (Formspree / Telegram bot)
+- `index.html` доторх `CONFIG`: утас (95084005), Messenger, Facebook бөглөгдсөн. Viber, Instagram, `leadEndpoint` (Formspree / Telegram bot) үлдсэн
 - `LISTINGS` массив: одоо 12 жишээ зар байна
-- Агентын хөрөг зураг, танилцуулга, гишүүнчлэл, имэйл
+- Агентын өндөр нягтралтай хөрөг зураг (одоо постероос тайрсан), имэйл, ажилладаг бүсийг баталгаажуулах
 - Сэтгэгдлийн хэсэг (`#reviews`): бодит сэтгэгдэл ирэх хүртэл нуугдмал
 
 ## Зургууд
